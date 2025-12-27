@@ -1,0 +1,632 @@
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomas Cancheff | Game Designer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Pixel & Tech -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-blue': '#00f3ff',
+                        'neon-pink': '#ff00ff',
+                        'neon-green': '#0aff00',
+                        'cyber-black': '#050510',
+                        'ui-dark': 'rgba(10, 10, 20, 0.9)'
+                    },
+                    fontFamily: {
+                        'pixel': ['"Press Start 2P"', 'cursive'],
+                        'mono': ['"Share Tech Mono"', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glitch': 'glitch 1s linear infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        glitch: {
+                            '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
+                            '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
+                            '62%': { transform: 'translate(0,0) skew(5deg)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050510;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            cursor: crosshair;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        body.light-mode {
+            background-color: #f0f0f0;
+            color: #1a1a1a;
+        }
+        
+        body.light-mode .scanlines, 
+        body.light-mode .screen-glow { opacity: 0.1; }
+
+        body.light-mode header {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid #ccc;
+        }
+
+        body.light-mode .project-card, body.light-mode .experience-card, body.light-mode .skill-card {
+            background: #fff;
+            border: 2px solid #ccc;
+            color: #000;
+        }
+        
+        body.light-mode .project-card:hover, body.light-mode .experience-card:hover, body.light-mode .skill-card:hover {
+            border-color: #00f3ff;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: #050510; }
+        ::-webkit-scrollbar-thumb { background: #00f3ff; border: 2px solid #050510; }
+
+        /* Effects */
+        .scanlines {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px; pointer-events: none; z-index: 50; animation: scanlineMove 10s linear infinite;
+        }
+        .screen-glow {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, rgba(0,243,255,0.05) 0%, rgba(0,0,0,0.6) 90%);
+            pointer-events: none; z-index: 49;
+        }
+        .glitch-hover:hover {
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+            color: #ff00ff; text-shadow: 2px 2px #00f3ff;
+        }
+
+        /* Cards */
+        .project-card, .experience-card, .skill-card {
+            transition: all 0.3s ease; border: 2px solid #333; background: rgba(0,0,0,0.7);
+        }
+        .project-card:hover, .experience-card:hover, .skill-card:hover {
+            border-color: #00f3ff; transform: translateY(-5px); box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+        }
+
+        canvas#bg-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        
+        /* Utils */
+        .text-glow-blue { text-shadow: 0 0 5px #00f3ff, 0 0 10px #00f3ff; }
+        .text-glow-pink { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
+        .start-btn-glow {
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2); animation: pulse-border 2s infinite;
+        }
+        
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 5px rgba(0, 243, 255, 0.2); border-color: #00f3ff; }
+            50% { box-shadow: 0 0 20px rgba(0, 243, 255, 0.6); border-color: #fff; }
+            100% { box-shadow: 0 0 5px rgba(0, 243, 255, 0.2); border-color: #00f3ff; }
+        }
+
+        /* Loader */
+        #loader {
+            position: fixed; inset: 0; background: #000; z-index: 100;
+            display: flex; justify-content: center; align-items: center; flex-direction: column; transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+<body class="font-mono selection:bg-neon-pink selection:text-white">
+
+    <div class="scanlines"></div>
+    <div class="screen-glow"></div>
+    <canvas id="bg-grid"></canvas>
+
+    <!-- Loader -->
+    <div id="loader">
+        <h1 class="font-pixel text-neon-blue text-4xl mb-8 animate-pulse text-center leading-normal">LOADING...</h1>
+        <div class="w-64 h-4 border-2 border-neon-blue p-1">
+            <div id="loading-bar" class="h-full bg-neon-pink w-0 transition-all duration-1000"></div>
+        </div>
+        <p class="mt-4 text-neon-green animate-bounce font-pixel text-xs cursor-pointer" id="start-btn" style="display:none;">[ CLICK TO START ]</p>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-40 p-4 border-b border-white/10 bg-black/80 backdrop-blur-sm flex justify-between items-center transition-colors duration-500">
+        <div class="flex items-center gap-4">
+            <div class="w-10 h-10 border-2 border-neon-blue rounded flex items-center justify-center overflow-hidden">
+                <i class="fa-solid fa-user-astronaut text-neon-blue text-xl"></i>
+            </div>
+            <div>
+                <h2 class="font-pixel text-xs text-neon-blue uppercase">PLAYER: TOMAS CANCHEFF</h2>
+                <div class="flex items-center gap-2 text-xs text-gray-400">
+                    <span data-translate="lvl">LVL. 28</span>
+                    <div class="w-20 h-2 bg-gray-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-neon-green w-[85%]"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden md:block flex-1 mx-10">
+            <div class="flex justify-between text-xs font-pixel mb-1 text-neon-pink">
+                <span data-translate="hp_scroll">HP (SCROLL)</span>
+                <span id="hp-text">100/100</span>
+            </div>
+            <div class="w-full h-4 border-2 border-white/20 skew-x-[-10deg] p-0.5">
+                <div id="scroll-hp" class="h-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 w-full transition-all duration-100 ease-out"></div>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-6">
+            <nav class="hidden md:flex gap-6 font-pixel text-xs">
+                <a href="#about" class="hover:text-neon-pink transition-colors">STATS</a>
+                <a href="#experience" class="hover:text-neon-pink transition-colors">EXP</a>
+                <a href="#skills" class="hover:text-neon-pink transition-colors" data-translate="nav_skills">SKILLS</a>
+                <a href="#education" class="hover:text-neon-pink transition-colors" data-translate="nav_edu">ACADEMIC</a>
+                <a href="#contact" class="hover:text-neon-pink transition-colors">INV</a>
+            </nav>
+            <button id="lang-btn" class="font-pixel text-xs border border-neon-blue px-2 py-1 text-neon-blue hover:bg-neon-blue hover:text-black transition-colors">ES</button>
+            <button id="theme-btn" class="text-neon-green hover:text-white transition-colors"><i class="fa-solid fa-sun"></i></button>
+            <button class="md:hidden text-neon-blue text-2xl" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="hidden fixed top-16 left-0 w-full bg-black/95 z-30 p-4 border-b border-neon-blue">
+        <ul class="font-pixel text-sm space-y-4 text-center">
+            <li><a href="#about" class="block text-white hover:text-neon-pink">STATS</a></li>
+            <li><a href="#experience" class="block text-white hover:text-neon-pink">EXP</a></li>
+            <li><a href="#skills" class="block text-white hover:text-neon-pink" data-translate="nav_skills">SKILLS</a></li>
+            <li><a href="#education" class="block text-white hover:text-neon-pink" data-translate="nav_edu">ACADEMIC</a></li>
+            <li><a href="#contact" class="block text-white hover:text-neon-pink">INVENTORY</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main class="relative z-10 container mx-auto px-4 pt-32 pb-20">
+
+        <!-- Hero -->
+        <section class="min-h-[80vh] flex flex-col justify-center items-center text-center mb-20" id="hero">
+            <div class="mb-4 inline-block px-4 py-1 border border-neon-green text-neon-green font-pixel text-xs rounded animate-pulse" data-translate="hero_status">SYSTEM READY</div>
+            <h1 class="font-pixel text-4xl md:text-6xl lg:text-7xl mb-6 text-glow-blue leading-tight animate-float">
+                TOMAS<br><span class="text-neon-pink text-glow-pink glitch-hover cursor-default">CANCHEFF</span>
+            </h1>
+            <h2 class="font-pixel text-lg md:text-2xl text-neon-green mb-8 tracking-widest" data-translate="hero_role">GAME DESIGNER</h2>
+            
+            <p class="font-mono text-lg md:text-xl max-w-2xl text-gray-300 mb-8 border-l-4 border-neon-blue pl-4 text-left mx-auto bg-black/50 p-4" data-translate="hero_desc">
+                ¡Te doy la bienvenida a mi portfolio! ¿Estás listo/a para iniciar esta misión?
+            </p>
+            <div class="flex gap-4">
+                <a href="#about" class="start-btn-glow group relative px-8 py-3 bg-transparent border-2 border-neon-blue text-neon-blue font-pixel text-sm uppercase tracking-wider overflow-hidden hover:text-black transition-colors hover:scale-105 duration-300">
+                    <span class="absolute inset-0 w-full h-full bg-neon-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+                    <span class="relative z-10"><i class="fa-solid fa-play mr-2"></i> <span data-translate="btn_start">Start Game</span></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section id="about" class="mb-32">
+            <div class="flex items-center gap-4 mb-10">
+                <i class="fa-solid fa-chart-pie text-neon-pink text-3xl"></i>
+                <h2 class="font-pixel text-2xl md:text-3xl" data-translate="stats_title">CHARACTER STATS</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="project-card p-6 relative group">
+                    <div class="absolute -top-2 -right-2 bg-neon-pink text-black font-pixel text-xs px-2 py-1">RARE</div>
+                    <div class="w-full aspect-square bg-gray-900 mb-4 flex items-center justify-center border border-white/10 overflow-hidden relative">
+                         <img src="assets/tomas_profile.jpg" alt="Tomas Cancheff" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                         <div class="text-center hidden">
+                             <i class="fa-solid fa-user-gear text-8xl text-white/20"></i>
+                             <p class="mt-2 text-xs text-gray-500 font-mono">(Image not found)</p>
+                         </div>
+                        <div class="absolute bottom-0 left-0 w-full bg-black/80 p-2 font-mono text-xs text-neon-green border-t border-neon-green">STATUS: AVAILABLE FOR HIRE</div>
+                    </div>
+                    <h3 class="font-pixel text-sm md:text-lg mb-2 text-neon-blue uppercase" data-translate="bio_title">Tomas Cancheff | Technical Game Designer</h3>
+                    <p class="font-mono text-gray-400 text-sm" data-translate="bio_text">
+                        Game Designer con más de dos años de experiencia profesional, especializado en diseño de sistemas y prototipado de mecánicas en Unity (C#) y Unreal Engine. Actualmente enfocado en el sector EdTech.
+                    </p>
+                </div>
+
+                <div class="flex flex-col justify-center space-y-6 bg-black/60 p-6 border-l-2 border-neon-blue backdrop-blur-sm">
+                    <div>
+                        <div class="flex justify-between font-pixel text-xs mb-2 text-neon-blue"><span data-translate="skill_prog">TECHNICAL SCRIPTING</span><span>75%</span></div>
+                        <div class="w-full h-3 bg-gray-800 border border-gray-600"><div class="h-full bg-neon-blue w-[75%] shadow-[0_0_10px_#00f3ff]"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between font-pixel text-xs mb-2 text-neon-pink"><span data-translate="skill_theory">GAME DESIGN & SYSTEMS</span><span>100%</span></div>
+                        <div class="w-full h-3 bg-gray-800 border border-gray-600"><div class="h-full bg-neon-pink w-[100%] shadow-[0_0_10px_#ff00ff]"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between font-pixel text-xs mb-2 text-neon-green"><span data-translate="skill_ld">LEVEL DESIGN</span><span>90%</span></div>
+                        <div class="w-full h-3 bg-gray-800 border border-gray-600"><div class="h-full bg-neon-green w-[90%] shadow-[0_0_10px_#0aff00]"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between font-pixel text-xs mb-2 text-yellow-400"><span data-translate="skill_proto">RAPID PROTOTYPING</span><span>100%</span></div>
+                        <div class="w-full h-3 bg-gray-800 border border-gray-600"><div class="h-full bg-yellow-400 w-[100%] shadow-[0_0_10px_#facc15]"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="mb-32">
+            <div class="flex items-center justify-between mb-10 border-b border-gray-700 pb-4">
+                <div class="flex items-center gap-4">
+                    <i class="fa-solid fa-scroll text-neon-green text-3xl"></i>
+                    <h2 class="font-pixel text-2xl md:text-3xl" data-translate="exp_title">EXPERIENCE POINTS</h2>
+                </div>
+            </div>
+            <div class="flex flex-col gap-8">
+                <article class="experience-card p-6 md:p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-briefcase text-9xl text-white"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 border-b border-gray-700 pb-4">
+                            <h3 class="font-pixel text-lg md:text-xl text-white group-hover:text-neon-green transition-colors" data-translate="exp1_role">GAME DESIGNER | TGA Company</h3>
+                            <span class="font-mono text-neon-green text-sm mt-2 md:mt-0" data-translate="exp1_date">Noviembre 2023 – Actualidad</span>
+                        </div>
+                        <ul class="font-mono text-sm md:text-base text-gray-300 space-y-3 list-disc pl-5 marker:text-neon-blue">
+                            <li data-translate="exp1_p1">Lidero el game design de cinco títulos B2B EdTech para clientes de LATAM y EE.UU.</li>
+                            <li data-translate="exp1_p2">Impulso flujos de trabajo asistidos por IA para prototipado rápido, reduciendo los tiempos de respuesta del diseño en 20-30%.</li>
+                            <li data-translate="exp1_p3">Diseño sistemas de juego escalables junto con su documentación (GDDs, Briefs, Spec Docs).</li>
+                            <li data-translate="exp1_p4">Colaboro estrechamente con los equipos de narrativa, desarrollo, instruccional y arte.</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Side Quests -->
+        <section id="sidequests" class="mb-32">
+            <div class="flex items-center gap-4 mb-10 border-b border-gray-700 pb-4">
+                <i class="fa-solid fa-gamepad text-neon-pink text-3xl"></i>
+                <h2 class="font-pixel text-2xl md:text-3xl" data-translate="sq_title">SIDE QUESTS</h2>
+            </div>
+            <div class="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory scrollbar-thin">
+                
+                <!-- TANK BATTLES (Con imagen) -->
+                <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
+                    <div class="absolute inset-0 bg-gray-800">
+                        <img src="assets/tank_cover.jpg" alt="Tank Battles" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-shield-halved text-8xl text-white/10"></i></div>
+                    </div>
+                    <div class="relative z-10 p-6 flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-blue">TANK BATTLES</h3>
+                                <span class="text-[10px] font-pixel text-neon-blue border border-neon-blue px-2 py-1">SOLO DEV</span>
+                            </div>
+                            <p class="font-mono text-xs text-neon-green mb-4">Unity (C#) | Oct 2025</p>
+                            <p class="font-mono text-sm text-gray-300" data-translate="sq1_desc">Juego arcade de combate 3D con multijugador local y soporte multiplataforma.</p>
+                        </div>
+                        <a href="https://decaroxgames.itch.io/tank-battles" target="_blank" class="block w-full text-center border border-neon-blue text-neon-blue py-2 font-pixel text-xs hover:bg-neon-blue hover:text-black transition-colors mt-4">PLAY ON ITCH.IO</a>
+                    </div>
+                </article>
+
+                <!-- YOUR WORST NIGHTMARE (Con Imagen) -->
+                <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
+                    <div class="absolute inset-0 bg-gray-800">
+                        <img src="assets/nightmare_cover.jpg" alt="Your Worst Nightmare" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-ghost text-8xl text-white/10"></i></div>
+                    </div>
+                    
+                    <div class="relative z-10 p-6 flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-pink">YOUR WORST NIGHTMARE</h3>
+                                <span class="text-[10px] font-pixel text-neon-pink border border-neon-pink px-2 py-1">TECH DESIGN</span>
+                            </div>
+                            <p class="font-mono text-xs text-neon-green mb-4">UE4 (Blueprints) | Ago 2023</p>
+                            <p class="font-mono text-sm text-gray-300" data-translate="sq2_desc">Título de terror 3D, integración de Blueprints para IA enemiga.</p>
+                        </div>
+                        <a href="https://decaroxgames.itch.io/your-worst-nightmare" target="_blank" class="block w-full text-center border border-neon-pink text-neon-pink py-2 font-pixel text-xs hover:bg-neon-pink hover:text-black transition-colors mt-4">PLAY ON ITCH.IO</a>
+                    </div>
+                </article>
+
+                <!-- GOLFEALO! (Con imagen) -->
+                <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
+                    <div class="absolute inset-0 bg-gray-800">
+                        <!-- Instrucción: Guarda tu imagen como 'golfealo_cover.jpg' en la carpeta assets -->
+                        <img src="assets/golfealo_cover.jpg" alt="Golfealo!" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <!-- Fallback si no hay imagen -->
+                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-golf-ball-tee text-8xl text-white/10"></i></div>
+                    </div>
+
+                    <div class="relative z-10 p-6 flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-green">GOLFEALO!</h3>
+                                <span class="text-[10px] font-pixel text-neon-green border border-neon-green px-2 py-1">DESIGN & ART</span>
+                            </div>
+                            <p class="font-mono text-xs text-neon-green mb-4">Unity (C#) | Sep 2021</p>
+                            <p class="font-mono text-sm text-gray-300" data-translate="sq3_desc">Arcade de minigolf basado en físicas y diseño de niveles.</p>
+                        </div>
+                        <a href="https://decaroxgames.itch.io/golfealo" target="_blank" class="block w-full text-center border border-neon-green text-neon-green py-2 font-pixel text-xs hover:bg-neon-green hover:text-black transition-colors mt-4">PLAY ON ITCH.IO</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Skill Tree (NUEVA SECCIÓN) -->
+        <section id="skills" class="mb-32">
+            <div class="flex items-center gap-4 mb-10 border-b border-gray-700 pb-4">
+                <i class="fa-solid fa-microchip text-yellow-400 text-3xl"></i>
+                <h2 class="font-pixel text-2xl md:text-3xl" data-translate="skill_tree_title">SKILL TREE</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Engines -->
+                <div class="skill-card p-6 border-2 border-gray-700 bg-black/60 hover:border-neon-blue transition-colors">
+                    <h3 class="font-pixel text-sm text-neon-blue mb-4 flex items-center gap-2"><i class="fa-solid fa-code"></i> <span data-translate="st_engines">ENGINES & CODE</span></h3>
+                    <ul class="font-mono text-sm text-gray-300 space-y-2">
+                        <li><i class="fa-brands fa-unity text-white mr-2"></i>Unity 3D/2D (C#)</li>
+                        <li><i class="fa-solid fa-cube text-white mr-2"></i>Unreal Engine (Blueprints)</li>
+                    </ul>
+                </div>
+                <!-- Game Design -->
+                <div class="skill-card p-6 border-2 border-gray-700 bg-black/60 hover:border-neon-pink transition-colors">
+                    <h3 class="font-pixel text-sm text-neon-pink mb-4 flex items-center gap-2"><i class="fa-solid fa-pen-ruler"></i> GAME DESIGN</h3>
+                    <ul class="font-mono text-sm text-gray-300 space-y-2">
+                        <li data-translate="st_gd_1">• Game Systems</li>
+                        <li data-translate="st_gd_2">• Level Design</li>
+                        <li data-translate="st_gd_3">• Mechanics Balancing</li>
+                        <li data-translate="st_gd_4">• Documentation (GDD, Briefs)</li>
+                    </ul>
+                </div>
+                <!-- AI & Prototyping -->
+                <div class="skill-card p-6 border-2 border-gray-700 bg-black/60 hover:border-neon-green transition-colors">
+                    <h3 class="font-pixel text-sm text-neon-green mb-4 flex items-center gap-2"><i class="fa-solid fa-robot"></i> <span data-translate="st_ai">AI & PROTOTYPING</span></h3>
+                    <p class="font-mono text-sm text-gray-300" data-translate="st_ai_desc">
+                        Uso de varios LLM para flujos de trabajo, aumentando la productividad y acelerando el prototipado.
+                    </p>
+                </div>
+                <!-- Tools -->
+                <div class="skill-card p-6 border-2 border-gray-700 bg-black/60 hover:border-yellow-400 transition-colors">
+                    <h3 class="font-pixel text-sm text-yellow-400 mb-4 flex items-center gap-2"><i class="fa-solid fa-toolbox"></i> <span data-translate="st_tools">PRODUCTIVITY</span></h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Jira</span>
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Figma</span>
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Miro</span>
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Slack</span>
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Git/GitHub</span>
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">BitBucket</span>
+                    </div>
+                </div>
+                <!-- Languages -->
+                <div class="skill-card p-6 border-2 border-gray-700 bg-black/60 hover:border-white transition-colors">
+                    <h3 class="font-pixel text-sm text-white mb-4 flex items-center gap-2"><i class="fa-solid fa-language"></i> <span data-translate="st_lang">LANGUAGES</span></h3>
+                    <ul class="font-mono text-sm text-gray-300 space-y-2">
+                        <li><span class="text-neon-blue">EN</span> English (C1)</li>
+                        <li><span class="text-neon-green">ES</span> Español (Nativo)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Log (NUEVA SECCIÓN) -->
+        <section id="education" class="mb-32">
+             <div class="flex items-center gap-4 mb-10 border-b border-gray-700 pb-4">
+                <i class="fa-solid fa-graduation-cap text-neon-blue text-3xl"></i>
+                <h2 class="font-pixel text-2xl md:text-3xl" data-translate="edu_title">ACADEMIC LOG</h2>
+            </div>
+            
+            <article class="p-8 border-2 border-neon-blue bg-black/80 relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-neon-blue text-black font-pixel text-xs px-3 py-1">COMPLETED</div>
+                
+                <h3 class="font-pixel text-lg text-white mb-2" data-translate="edu_degree">Técnico Universitario en Desarrollo de Software y Videojuegos</h3>
+                <div class="flex flex-col md:flex-row md:items-center gap-4 font-mono text-sm text-neon-blue mb-4">
+                    <span><i class="fa-solid fa-building-columns"></i> UADE</span>
+                    <span class="hidden md:inline">|</span>
+                    <span><i class="fa-solid fa-calendar"></i> Ago 2019 – Dic 2023</span>
+                    <span class="hidden md:inline">|</span>
+                    <span><i class="fa-solid fa-location-dot"></i> Argentina</span>
+                </div>
+                
+                <p class="font-mono text-gray-300 mb-6" data-translate="edu_focus">
+                    Enfoque: Game Design técnico, C# y Diseño de Juegos tanto en Unity como Unreal Engine.
+                </p>
+                
+                <a href="https://drive.google.com/file/d/1W3StJLOD7gdwcIqAxcsZPDVkWpRM0stx/view?usp=sharing" target="_blank" class="inline-block px-6 py-3 border border-neon-blue text-neon-blue font-pixel text-xs hover:bg-neon-blue hover:text-black transition-all hover:shadow-[0_0_15px_#00f3ff]">
+                    <i class="fa-solid fa-eye mr-2"></i> <span data-translate="btn_show">SHOW ME</span>
+                </a>
+            </article>
+        </section>
+
+        <!-- Inventory -->
+        <section id="contact" class="max-w-4xl mx-auto border-2 border-dashed border-gray-700 p-8 bg-black/80 relative transition-all">
+            <div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-neon-blue"></div>
+            <div class="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-neon-blue"></div>
+            <div class="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-neon-blue"></div>
+            <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-neon-blue"></div>
+
+            <div class="text-center mb-10"><h2 class="font-pixel text-2xl text-neon-blue mb-2" data-translate="contact_title">INVENTORY</h2></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="font-mono text-sm space-y-6">
+                    <div class="flex items-start gap-4"><i class="fa-solid fa-map-pin text-neon-pink mt-1"></i><div><span class="block text-gray-500 text-xs">LOCATION</span><span class="text-white">Olivos, Buenos Aires, Argentina</span></div></div>
+                    <div class="flex items-start gap-4"><i class="fa-solid fa-phone text-neon-green mt-1"></i><div><span class="block text-gray-500 text-xs">PHONE</span><span class="text-white">(+54) 11 65718754</span></div></div>
+                    <div class="flex items-start gap-4"><i class="fa-solid fa-envelope text-neon-blue mt-1"></i><div><span class="block text-gray-500 text-xs">EMAIL</span><a href="mailto:tomicancheff@gmail.com" class="text-white hover:text-neon-blue transition-colors">tomicancheff@gmail.com</a></div></div>
+                    <div class="pt-4 flex flex-col gap-3">
+                        <a href="https://www.linkedin.com/in/tomas-cancheff-576545243/" target="_blank" class="flex items-center gap-3 p-3 border border-gray-700 hover:border-neon-blue hover:bg-white/5 transition-all group"><i class="fa-brands fa-linkedin text-xl text-gray-400 group-hover:text-neon-blue"></i><span class="text-gray-300 group-hover:text-white">LinkedIn Profile</span></a>
+                        <a href="https://decaroxgames.itch.io/" target="_blank" class="flex items-center gap-3 p-3 border border-gray-700 hover:border-neon-pink hover:bg-white/5 transition-all group"><i class="fa-brands fa-itch-io text-xl text-gray-400 group-hover:text-neon-pink"></i><span class="text-gray-300 group-hover:text-white">Itch.io Portfolio</span></a>
+                    </div>
+                </div>
+                <div class="space-y-4 border-l border-gray-800 pl-0 md:pl-8">
+                    <div><label class="block font-pixel text-xs text-neon-pink mb-2" data-translate="label_name">PLAYER NAME</label><input id="contact-name" type="text" class="w-full bg-gray-900 border border-gray-700 p-3 font-mono text-white focus:border-neon-pink focus:outline-none transition-colors" placeholder="Recruiter Name..."></div>
+                    <div><label class="block font-pixel text-xs text-neon-blue mb-2" data-translate="label_msg">QUEST DESCRIPTION</label><textarea id="contact-message" rows="4" class="w-full bg-gray-900 border border-gray-700 p-3 font-mono text-white focus:border-neon-blue focus:outline-none transition-colors" placeholder="Hi Tomas, I'd like to discuss..."></textarea></div>
+                    <button id="send-msg-btn" type="button" class="w-full bg-white text-black font-pixel text-xs py-3 hover:bg-neon-blue transition-colors hover:shadow-[0_0_15px_#00f3ff]" data-translate="btn_send">SEND MESSAGE</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 font-mono text-xs text-gray-600 relative z-10 border-t border-white/5">
+        <p>PRESS START TO CONTINUE • © 2024 TOMAS CANCHEFF</p>
+        <p class="mt-2 text-[10px] opacity-50">HINT: TRY THE KONAMI CODE</p>
+    </footer>
+
+    <script>
+        // Init
+        setTimeout(() => { document.getElementById('loading-bar').style.width = '100%'; }, 100);
+        setTimeout(() => { document.getElementById('start-btn').style.display = 'block'; }, 1200);
+        document.getElementById('start-btn').addEventListener('click', () => {
+            document.getElementById('loader').style.opacity = '0';
+            setTimeout(() => { document.getElementById('loader').style.display = 'none'; }, 500);
+            initGrid();
+        });
+
+        // Scroll HP
+        window.addEventListener('scroll', () => {
+            const st = window.scrollY;
+            const dh = document.documentElement.scrollHeight - window.innerHeight;
+            const sp = 100 - ((st / dh) * 100);
+            const rem = Math.max(0, Math.min(100, Math.round(sp)));
+            const bar = document.getElementById('scroll-hp');
+            bar.style.width = `${rem}%`;
+            document.getElementById('hp-text').innerText = `${rem}/100`;
+            if(rem < 30) bar.className = "h-full bg-red-600 w-full transition-all duration-100 animate-pulse";
+            else if (rem < 60) bar.className = "h-full bg-yellow-500 w-full transition-all duration-100";
+            else bar.className = "h-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 w-full transition-all duration-100";
+        });
+
+        // Translations
+        const translations = {
+            es: {
+                nav_stats: "STATS", nav_exp: "EXP", nav_inv: "INVENTORY", nav_side: "SIDE QUESTS", nav_skills: "SKILLS", nav_edu: "ACADEMIC",
+                hero_status: "SISTEMA LISTO", hero_role: "GAME DESIGNER",
+                hero_desc: "¡Te doy la bienvenida a mi portfolio! ¿Estás listo/a para iniciar esta misión?",
+                btn_start: "Start Game", stats_title: "CHARACTER STATS",
+                bio_title: "Tomas Cancheff | Technical Game Designer",
+                bio_text: "Game Designer con más de dos años de experiencia profesional, especializado en diseño de sistemas y prototipado de mecánicas en Unity (C#) y Unreal Engine. Actualmente enfocado en el sector EdTech.",
+                skill_prog: "TECHNICAL SCRIPTING", skill_theory: "GAME DESIGN & SYSTEMS", skill_ld: "LEVEL DESIGN", skill_proto: "RAPID PROTOTYPING",
+                exp_title: "EXPERIENCE POINTS", exp1_role: "GAME DESIGNER | TGA Company", exp1_date: "Noviembre 2023 – Actualidad",
+                exp1_p1: "Lidero el game design de cinco títulos B2B EdTech para clientes de LATAM y EE.UU.",
+                exp1_p2: "Impulso flujos de trabajo asistidos por IA para prototipado rápido, reduciendo tiempos en 20-30%.",
+                exp1_p3: "Diseño sistemas de juego escalables junto con su documentación (GDDs, Briefs, Spec Docs).",
+                exp1_p4: "Colaboro estrechamente con los equipos de narrativa, desarrollo y arte.",
+                sq_title: "SIDE QUESTS",
+                sq1_desc: "Juego arcade de combate 3D con multijugador local y soporte multiplataforma.",
+                sq2_desc: "Título de terror 3D, integración de Blueprints para IA enemiga.",
+                sq3_desc: "Arcade de minigolf basado en físicas y diseño de niveles.",
+                skill_tree_title: "SKILL TREE", st_engines: "MOTORES & CÓDIGO", st_gd_1: "• Sistemas de Juego", st_gd_2: "• Diseño de Niveles", st_gd_3: "• Balanceo de Mecánicas", st_gd_4: "• Documentación (GDD, Briefs)", st_ai: "IA Y PROTOTIPADO", st_ai_desc: "Uso de LLMs para optimizar flujos de trabajo y prototipado.", st_tools: "HERRAMIENTAS", st_lang: "IDIOMAS",
+                edu_title: "REGISTRO ACADÉMICO", edu_degree: "Técnico Universitario en Desarrollo de Software y Videojuegos", edu_focus: "Enfoque: Game Design técnico, C# y Diseño de Juegos en Unity/Unreal.", btn_show: "VER TÍTULO",
+                contact_title: "INVENTARIO", label_name: "NOMBRE JUGADOR", label_msg: "DESCRIPCIÓN QUEST", btn_send: "ENVIAR MENSAJE",
+                lvl: "LVL. 28", hp_scroll: "HP (SCROLL)"
+            },
+            en: {
+                nav_stats: "STATS", nav_exp: "EXP", nav_inv: "INVENTORY", nav_side: "SIDE QUESTS", nav_skills: "SKILLS", nav_edu: "ACADEMIC",
+                hero_status: "SYSTEM READY", hero_role: "GAME DESIGNER",
+                hero_desc: "Welcome to my portfolio! Are you ready to start this mission?",
+                btn_start: "Start Game", stats_title: "CHARACTER STATS",
+                bio_title: "Tomas Cancheff | Technical Game Designer",
+                bio_text: "Game Designer with over two years of professional experience, specialized in system design and mechanics prototyping in Unity (C#) and Unreal Engine. Currently focused on EdTech.",
+                skill_prog: "TECHNICAL SCRIPTING", skill_theory: "GAME DESIGN & SYSTEMS", skill_ld: "LEVEL DESIGN", skill_proto: "RAPID PROTOTYPING",
+                exp_title: "EXPERIENCE POINTS", exp1_role: "GAME DESIGNER | TGA Company", exp1_date: "November 2023 – Present",
+                exp1_p1: "Leading game design for five B2B EdTech titles for LATAM and US clients.",
+                exp1_p2: "Driving AI-assisted workflows for rapid prototyping, reducing turnaround times by 20-30%.",
+                exp1_p3: "Designing scalable game systems along with documentation (GDDs, Spec Docs).",
+                exp1_p4: "Collaborating closely with narrative, development, and art teams.",
+                sq_title: "SIDE QUESTS",
+                sq1_desc: "3D arcade combat game with local multiplayer and cross-platform support.",
+                sq2_desc: "3D horror title, integrating Blueprints for AI enemy behavior.",
+                sq3_desc: "Physics-based minigolf arcade game and level design.",
+                skill_tree_title: "SKILL TREE", st_engines: "ENGINES & CODE", st_gd_1: "• Game Systems", st_gd_2: "• Level Design", st_gd_3: "• Mechanics Balancing", st_gd_4: "• Documentation (GDD, Briefs)", st_ai: "AI & PROTOTYPING", st_ai_desc: "Using LLMs to optimize workflows and accelerate prototyping.", st_tools: "TOOLS", st_lang: "LANGUAGES",
+                edu_title: "ACADEMIC LOG", edu_degree: "University Technician in Software & Game Development", edu_focus: "Focus: Technical Game Design, C# and Game Design in Unity/Unreal.", btn_show: "SHOW TITLE",
+                contact_title: "INVENTORY", label_name: "PLAYER NAME", label_msg: "QUEST DESCRIPTION", btn_send: "SEND MESSAGE",
+                lvl: "LVL. 28", hp_scroll: "HP (SCROLL)"
+            }
+        };
+
+        let currentLang = 'es';
+        const langBtn = document.getElementById('lang-btn');
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            langBtn.innerText = currentLang.toUpperCase();
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+            });
+        });
+
+        // Contact
+        document.getElementById('send-msg-btn').addEventListener('click', () => {
+            const name = document.getElementById('contact-name').value;
+            const message = document.getElementById('contact-message').value;
+            if(!name || !message) { alert('Please fill out all fields!'); return; }
+            window.location.href = `mailto:tomicancheff@gmail.com?subject=${encodeURIComponent(`New Quest from ${name}`)}&body=${encodeURIComponent(`Player Name: ${name}\n\nQuest Description:\n${message}`)}`;
+        });
+
+        // Theme
+        const themeBtn = document.getElementById('theme-btn');
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            themeBtn.querySelector('i').classList.replace('fa-sun', 'fa-moon');
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            themeBtn.querySelector('i').className = isLight ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
+        // Grid
+        function initGrid() {
+            const canvas = document.getElementById('bg-grid'), ctx = canvas.getContext('2d');
+            let w = canvas.width = window.innerWidth, h = canvas.height = window.innerHeight;
+            let mx = w/2, my = h/2;
+            document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+            window.addEventListener('resize', () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; });
+            
+            const gs = 40;
+            function draw() {
+                const light = document.body.classList.contains('light-mode');
+                ctx.fillStyle = light ? '#f0f0f0' : '#050510';
+                ctx.fillRect(0,0,w,h);
+                const base = light ? 'rgba(0,0,0,0.1)' : 'rgba(0,243,255,0.15)';
+                const active = light ? 'rgba(0,0,0,0.5)' : '#00f3ff';
+                const myMove = (Date.now()*0.05)%gs;
+
+                ctx.lineWidth = 1;
+                for(let i=0; i<w; i+=gs) {
+                    let d = Math.abs(i-mx), s = Math.max(0,50-d)*0.5, x = i<mx ? i-s : i+s;
+                    ctx.strokeStyle = base; ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke();
+                }
+                for(let j=-gs; j<h; j+=gs) {
+                    let y = j+myMove, d = Math.abs(y-my), s = Math.max(0,50-d)*0.5, yp = y<my ? y-s : y+s;
+                    ctx.strokeStyle = Math.abs(yp-my)<100 ? active : base;
+                    ctx.beginPath(); ctx.moveTo(0,yp); ctx.lineTo(w,yp); ctx.stroke();
+                }
+                if(!light) {
+                    ctx.strokeStyle = active; ctx.lineWidth = 2; ctx.strokeRect(mx-10,my-10,20,20);
+                }
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+        
+        // Konami
+        const k = [38,38,40,40,37,39,37,39,66,65]; let ki = 0;
+        document.addEventListener('keydown', e => {
+            if(e.keyCode === k[ki]) { ki++; if(ki===k.length) { alert('★ GOD MODE ACTIVATED ★'); document.body.style.filter="hue-rotate(90deg) contrast(1.2)"; ki=0; } } else ki=0;
+        });
+    </script>
+</body>
+</html>
