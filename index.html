@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,6 @@
     
     <script>
         tailwind.config = {
-            darkMode: 'class', 
             theme: {
                 extend: {
                     colors: {
@@ -54,30 +53,6 @@
             color: #e0e0e0;
             overflow-x: hidden;
             cursor: crosshair;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-
-        body.light-mode {
-            background-color: #f0f0f0;
-            color: #1a1a1a;
-        }
-        
-        body.light-mode .scanlines, 
-        body.light-mode .screen-glow { opacity: 0.1; }
-
-        body.light-mode header {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid #ccc;
-        }
-
-        body.light-mode .project-card, body.light-mode .experience-card, body.light-mode .skill-card {
-            background: #fff;
-            border: 2px solid #ccc;
-            color: #000;
-        }
-        
-        body.light-mode .project-card:hover, body.light-mode .experience-card:hover, body.light-mode .skill-card:hover {
-            border-color: #00f3ff;
         }
 
         /* Scrollbar */
@@ -109,6 +84,17 @@
             border-color: #00f3ff; transform: translateY(-5px); box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
         }
 
+        /* Difficulty Selector Style */
+        .diff-selector {
+            display: flex; gap: 4px; font-family: "Share Tech Mono", monospace; font-size: 0.75rem;
+        }
+        .diff-level {
+            padding: 2px 6px; border: 1px solid #444; color: #666; transition: all 0.3s;
+        }
+        .diff-level.active {
+            border-color: currentColor; background: rgba(255,255,255,0.1); font-weight: bold; text-shadow: 0 0 5px currentColor;
+        }
+
         canvas#bg-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
         
         /* Utils */
@@ -128,6 +114,11 @@
         #loader {
             position: fixed; inset: 0; background: #000; z-index: 100;
             display: flex; justify-content: center; align-items: center; flex-direction: column; transition: opacity 0.5s ease;
+        }
+        
+        /* Side Quest Overlay Gradient */
+        .sq-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0.4) 100%);
         }
     </style>
 </head>
@@ -182,7 +173,6 @@
                 <a href="#contact" class="hover:text-neon-pink transition-colors">INV</a>
             </nav>
             <button id="lang-btn" class="font-pixel text-xs border border-neon-blue px-2 py-1 text-neon-blue hover:bg-neon-blue hover:text-black transition-colors">ES</button>
-            <button id="theme-btn" class="text-neon-green hover:text-white transition-colors"><i class="fa-solid fa-sun"></i></button>
             <button class="md:hidden text-neon-blue text-2xl" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"><i class="fa-solid fa-bars"></i></button>
         </div>
     </header>
@@ -209,7 +199,7 @@
             <h2 class="font-pixel text-lg md:text-2xl text-neon-green mb-8 tracking-widest" data-translate="hero_role">GAME DESIGNER</h2>
             
             <p class="font-mono text-lg md:text-xl max-w-2xl text-gray-300 mb-8 border-l-4 border-neon-blue pl-4 text-left mx-auto bg-black/50 p-4" data-translate="hero_desc">
-                ¡Te doy la bienvenida a mi portfolio! ¿Estás listo/a para iniciar esta misión?
+                Aquí comienza tu misión. ¿Estás listo?
             </p>
             <div class="flex gap-4">
                 <a href="#about" class="start-btn-glow group relative px-8 py-3 bg-transparent border-2 border-neon-blue text-neon-blue font-pixel text-sm uppercase tracking-wider overflow-hidden hover:text-black transition-colors hover:scale-105 duration-300">
@@ -230,7 +220,8 @@
                 <div class="project-card p-6 relative group">
                     <div class="absolute -top-2 -right-2 bg-neon-pink text-black font-pixel text-xs px-2 py-1">RARE</div>
                     <div class="w-full aspect-square bg-gray-900 mb-4 flex items-center justify-center border border-white/10 overflow-hidden relative">
-                         <img src="assets/tomas_profile.jpg" alt="Tomas Cancheff" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                         <!-- Imagen ajustada con object-contain o object-cover pero centrada -->
+                         <img src="assets/tomas_profile_new.jpg" alt="Tomas Cancheff" class="w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                          <div class="text-center hidden">
                              <i class="fa-solid fa-user-gear text-8xl text-white/20"></i>
                              <p class="mt-2 text-xs text-gray-500 font-mono">(Image not found)</p>
@@ -239,27 +230,57 @@
                     </div>
                     <h3 class="font-pixel text-sm md:text-lg mb-2 text-neon-blue uppercase" data-translate="bio_title">Tomas Cancheff | Technical Game Designer</h3>
                     <p class="font-mono text-gray-400 text-sm" data-translate="bio_text">
-                        Game Designer con más de dos años de experiencia profesional, especializado en diseño de sistemas y prototipado de mecánicas en Unity (C#) y Unreal Engine. Actualmente enfocado en el sector EdTech.
+                        Game Designer con más de dos años de experiencia profesional, especializado en diseño de sistemas y prototipado de mecánicas en Unity (C#) y Unreal Engine (Blueprints). Actualmente enfocado en el sector EdTech y la gamificación.
                     </p>
                 </div>
 
+                <!-- Skill Selectors (Reemplazo de Barras) -->
                 <div class="flex flex-col justify-center space-y-6 bg-black/60 p-6 border-l-2 border-neon-blue backdrop-blur-sm">
+                    
+                    <!-- Skill 1 -->
                     <div>
-                        <div class="flex justify-between font-pixel text-xs mb-2 text-neon-blue"><span data-translate="skill_prog">TECHNICAL SCRIPTING</span><span>75%</span></div>
-                        <div class="w-full h-3 bg-gray-800 border border-gray-600"><div class="h-full bg-neon-blue w-[75%] shadow-[0_0_10px_#00f3ff]"></div></div>
+                        <div class="font-pixel text-xs mb-2 text-neon-blue" data-translate="skill_prog">TECHNICAL SCRIPTING</div>
+                        <div class="diff-selector text-neon-blue">
+                            <span class="diff-level">LOW</span>
+                            <span class="diff-level">MED</span>
+                            <span class="diff-level active">HIGH</span>
+                            <span class="diff-level">EXP</span>
+                        </div>
                     </div>
+
+                    <!-- Skill 2 -->
                     <div>
-                        <div class="flex justify-between font-pixel text-xs mb-2 text-neon-pink"><span data-translate="skill_theory">GAME DESIGN & SYSTEMS</span><span>100%</span></div>
-                        <div class="w-full h-3 bg-gray-800 border border-gray-600"><div class="h-full bg-neon-pink w-[100%] shadow-[0_0_10px_#ff00ff]"></div></div>
+                        <div class="font-pixel text-xs mb-2 text-neon-pink" data-translate="skill_theory">GAME DESIGN & SYSTEMS</div>
+                        <div class="diff-selector text-neon-pink">
+                            <span class="diff-level">LOW</span>
+                            <span class="diff-level">MED</span>
+                            <span class="diff-level">HIGH</span>
+                            <span class="diff-level active">EXP</span>
+                        </div>
                     </div>
+
+                    <!-- Skill 3 -->
                     <div>
-                        <div class="flex justify-between font-pixel text-xs mb-2 text-neon-green"><span data-translate="skill_ld">LEVEL DESIGN</span><span>90%</span></div>
-                        <div class="w-full h-3 bg-gray-800 border border-gray-600"><div class="h-full bg-neon-green w-[90%] shadow-[0_0_10px_#0aff00]"></div></div>
+                        <div class="font-pixel text-xs mb-2 text-neon-green" data-translate="skill_ld">LEVEL DESIGN</div>
+                        <div class="diff-selector text-neon-green">
+                            <span class="diff-level">LOW</span>
+                            <span class="diff-level">MED</span>
+                            <span class="diff-level active">HIGH</span>
+                            <span class="diff-level">EXP</span>
+                        </div>
                     </div>
+
+                    <!-- Skill 4 -->
                     <div>
-                        <div class="flex justify-between font-pixel text-xs mb-2 text-yellow-400"><span data-translate="skill_proto">RAPID PROTOTYPING</span><span>100%</span></div>
-                        <div class="w-full h-3 bg-gray-800 border border-gray-600"><div class="h-full bg-yellow-400 w-[100%] shadow-[0_0_10px_#facc15]"></div></div>
+                        <div class="font-pixel text-xs mb-2 text-yellow-400" data-translate="skill_proto">RAPID PROTOTYPING</div>
+                        <div class="diff-selector text-yellow-400">
+                            <span class="diff-level">LOW</span>
+                            <span class="diff-level">MED</span>
+                            <span class="diff-level">HIGH</span>
+                            <span class="diff-level active">EXP</span>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -284,9 +305,9 @@
                         </div>
                         <ul class="font-mono text-sm md:text-base text-gray-300 space-y-3 list-disc pl-5 marker:text-neon-blue">
                             <li data-translate="exp1_p1">Lidero el game design de cinco títulos B2B EdTech para clientes de LATAM y EE.UU.</li>
-                            <li data-translate="exp1_p2">Impulso flujos de trabajo asistidos por IA para prototipado rápido, reduciendo los tiempos de respuesta del diseño en 20-30%.</li>
+                            <li data-translate="exp1_p2">Impulso flujos de trabajo asistidos por IA para prototipado rápido, reduciendo tiempos de producción aproximadamente un 20-30%.</li>
                             <li data-translate="exp1_p3">Diseño sistemas de juego escalables junto con su documentación (GDDs, Briefs, Spec Docs).</li>
-                            <li data-translate="exp1_p4">Colaboro estrechamente con los equipos de narrativa, desarrollo, instruccional y arte.</li>
+                            <li data-translate="exp1_p4">Colaboro estrechamente con los equipos de narrativa, desarrollo, arte, comercial e instruccional.</li>
                         </ul>
                     </div>
                 </article>
@@ -301,70 +322,66 @@
             </div>
             <div class="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory scrollbar-thin">
                 
-                <!-- TANK BATTLES (Con imagen) -->
+                <!-- TANK BATTLES -->
                 <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
-                    <div class="absolute inset-0 bg-gray-800">
-                        <img src="assets/tank_cover.jpg" alt="Tank Battles" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="absolute inset-0 bg-gray-900">
+                        <img src="assets/tank_cover.jpg" alt="Tank Battles" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-shield-halved text-8xl text-white/10"></i></div>
                     </div>
-                    <div class="relative z-10 p-6 flex flex-col h-full justify-between">
+                    <div class="relative z-10 p-6 flex flex-col h-full justify-between sq-overlay">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-blue">TANK BATTLES</h3>
-                                <span class="text-[10px] font-pixel text-neon-blue border border-neon-blue px-2 py-1">SOLO DEV</span>
+                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-blue text-glow-blue">TANK BATTLES</h3>
+                                <span class="text-[10px] font-pixel text-neon-blue border border-neon-blue px-2 py-1 bg-black/50">SOLO DEV</span>
                             </div>
-                            <p class="font-mono text-xs text-neon-green mb-4">Unity (C#) | Oct 2025</p>
-                            <p class="font-mono text-sm text-gray-300" data-translate="sq1_desc">Juego arcade de combate 3D con multijugador local y soporte multiplataforma.</p>
+                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1">Unity (C#) | Oct 2025</p>
+                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq1_desc">Juego arcade de combate 3D con multijugador local y soporte multiplataforma.</p>
                         </div>
-                        <a href="https://decaroxgames.itch.io/tank-battles" target="_blank" class="block w-full text-center border border-neon-blue text-neon-blue py-2 font-pixel text-xs hover:bg-neon-blue hover:text-black transition-colors mt-4">PLAY ON ITCH.IO</a>
+                        <a href="https://decaroxgames.itch.io/tank-battles" target="_blank" class="block w-full text-center border border-neon-blue text-neon-blue py-2 font-pixel text-xs hover:bg-neon-blue hover:text-black transition-colors mt-4 bg-black/60 backdrop-blur-sm">PLAY ON ITCH.IO</a>
                     </div>
                 </article>
 
-                <!-- YOUR WORST NIGHTMARE (Con Imagen) -->
+                <!-- YOUR WORST NIGHTMARE -->
                 <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
-                    <div class="absolute inset-0 bg-gray-800">
-                        <img src="assets/nightmare_cover.jpg" alt="Your Worst Nightmare" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="absolute inset-0 bg-gray-900">
+                        <img src="assets/nightmare_cover.jpg" alt="Your Worst Nightmare" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-ghost text-8xl text-white/10"></i></div>
                     </div>
-                    
-                    <div class="relative z-10 p-6 flex flex-col h-full justify-between">
+                    <div class="relative z-10 p-6 flex flex-col h-full justify-between sq-overlay">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-pink">YOUR WORST NIGHTMARE</h3>
-                                <span class="text-[10px] font-pixel text-neon-pink border border-neon-pink px-2 py-1">TECH DESIGN</span>
+                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-pink text-glow-pink">YOUR WORST NIGHTMARE</h3>
+                                <span class="text-[10px] font-pixel text-neon-pink border border-neon-pink px-2 py-1 bg-black/50">TECHNICAL DESIGN</span>
                             </div>
-                            <p class="font-mono text-xs text-neon-green mb-4">UE4 (Blueprints) | Ago 2023</p>
-                            <p class="font-mono text-sm text-gray-300" data-translate="sq2_desc">Título de terror 3D, integración de Blueprints para IA enemiga.</p>
+                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1" data-translate="sq2_date">UE4 (Blueprints) | Ago 2023</p>
+                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq2_desc">Título de terror 3D, integración de Blueprints para IA enemiga.</p>
                         </div>
-                        <a href="https://decaroxgames.itch.io/your-worst-nightmare" target="_blank" class="block w-full text-center border border-neon-pink text-neon-pink py-2 font-pixel text-xs hover:bg-neon-pink hover:text-black transition-colors mt-4">PLAY ON ITCH.IO</a>
+                        <a href="https://decaroxgames.itch.io/your-worst-nightmare" target="_blank" class="block w-full text-center border border-neon-pink text-neon-pink py-2 font-pixel text-xs hover:bg-neon-pink hover:text-black transition-colors mt-4 bg-black/60 backdrop-blur-sm">PLAY ON ITCH.IO</a>
                     </div>
                 </article>
 
-                <!-- GOLFEALO! (Con imagen) -->
+                <!-- GOLFEALO! -->
                 <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
-                    <div class="absolute inset-0 bg-gray-800">
-                        <!-- Instrucción: Guarda tu imagen como 'golfealo_cover.jpg' en la carpeta assets -->
-                        <img src="assets/golfealo_cover.jpg" alt="Golfealo!" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <!-- Fallback si no hay imagen -->
+                    <div class="absolute inset-0 bg-gray-900">
+                        <img src="assets/golfealo_cover.jpg" alt="Golfealo!" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-golf-ball-tee text-8xl text-white/10"></i></div>
                     </div>
-
-                    <div class="relative z-10 p-6 flex flex-col h-full justify-between">
+                    <div class="relative z-10 p-6 flex flex-col h-full justify-between sq-overlay">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-green">GOLFEALO!</h3>
-                                <span class="text-[10px] font-pixel text-neon-green border border-neon-green px-2 py-1">DESIGN & ART</span>
+                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-green text-glow-blue">GOLFEALO!</h3>
+                                <span class="text-[10px] font-pixel text-neon-green border border-neon-green px-2 py-1 bg-black/50">DESIGN & ART</span>
                             </div>
-                            <p class="font-mono text-xs text-neon-green mb-4">Unity (C#) | Sep 2021</p>
-                            <p class="font-mono text-sm text-gray-300" data-translate="sq3_desc">Arcade de minigolf basado en físicas y diseño de niveles.</p>
+                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1" data-translate="sq3_date">Unity (C#) | Sep 2021</p>
+                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq3_desc">Arcade de minigolf basado en físicas y diseño de niveles.</p>
                         </div>
-                        <a href="https://decaroxgames.itch.io/golfealo" target="_blank" class="block w-full text-center border border-neon-green text-neon-green py-2 font-pixel text-xs hover:bg-neon-green hover:text-black transition-colors mt-4">PLAY ON ITCH.IO</a>
+                        <a href="https://decaroxgames.itch.io/golfealo" target="_blank" class="block w-full text-center border border-neon-green text-neon-green py-2 font-pixel text-xs hover:bg-neon-green hover:text-black transition-colors mt-4 bg-black/60 backdrop-blur-sm">PLAY ON ITCH.IO</a>
                     </div>
                 </article>
             </div>
         </section>
 
-        <!-- Skill Tree (NUEVA SECCIÓN) -->
+        <!-- Skill Tree -->
         <section id="skills" class="mb-32">
             <div class="flex items-center gap-4 mb-10 border-b border-gray-700 pb-4">
                 <i class="fa-solid fa-microchip text-yellow-400 text-3xl"></i>
@@ -387,14 +404,15 @@
                         <li data-translate="st_gd_1">• Game Systems</li>
                         <li data-translate="st_gd_2">• Level Design</li>
                         <li data-translate="st_gd_3">• Mechanics Balancing</li>
-                        <li data-translate="st_gd_4">• Documentation (GDD, Briefs)</li>
+                        <li data-translate="st_gd_4">• Documentation (GDD, Feature Briefs, Spec Docs, High Concepts)</li>
+                        <li data-translate="st_gd_5">• QA & Playtesting</li>
                     </ul>
                 </div>
                 <!-- AI & Prototyping -->
                 <div class="skill-card p-6 border-2 border-gray-700 bg-black/60 hover:border-neon-green transition-colors">
                     <h3 class="font-pixel text-sm text-neon-green mb-4 flex items-center gap-2"><i class="fa-solid fa-robot"></i> <span data-translate="st_ai">AI & PROTOTYPING</span></h3>
                     <p class="font-mono text-sm text-gray-300" data-translate="st_ai_desc">
-                        Uso de varios LLM para flujos de trabajo, aumentando la productividad y acelerando el prototipado.
+                        Uso de agentes para aceleración de procesos de prototipado como creación de código o asistencia en el armado de documentación.
                     </p>
                 </div>
                 <!-- Tools -->
@@ -407,6 +425,7 @@
                         <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Slack</span>
                         <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Git/GitHub</span>
                         <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">BitBucket</span>
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Google Workspace</span>
                     </div>
                 </div>
                 <!-- Languages -->
@@ -414,13 +433,13 @@
                     <h3 class="font-pixel text-sm text-white mb-4 flex items-center gap-2"><i class="fa-solid fa-language"></i> <span data-translate="st_lang">LANGUAGES</span></h3>
                     <ul class="font-mono text-sm text-gray-300 space-y-2">
                         <li><span class="text-neon-blue">EN</span> English (C1)</li>
-                        <li><span class="text-neon-green">ES</span> Español (Nativo)</li>
+                        <li><span class="text-neon-green">ES</span> <span data-translate="lang_es">Español</span> (Nativo)</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Academic Log (NUEVA SECCIÓN) -->
+        <!-- Academic Log -->
         <section id="education" class="mb-32">
              <div class="flex items-center gap-4 mb-10 border-b border-gray-700 pb-4">
                 <i class="fa-solid fa-graduation-cap text-neon-blue text-3xl"></i>
@@ -434,7 +453,7 @@
                 <div class="flex flex-col md:flex-row md:items-center gap-4 font-mono text-sm text-neon-blue mb-4">
                     <span><i class="fa-solid fa-building-columns"></i> UADE</span>
                     <span class="hidden md:inline">|</span>
-                    <span><i class="fa-solid fa-calendar"></i> Ago 2019 – Dic 2023</span>
+                    <span data-translate="edu_date"><i class="fa-solid fa-calendar"></i> Ago 2019 – Dic 2023</span>
                     <span class="hidden md:inline">|</span>
                     <span><i class="fa-solid fa-location-dot"></i> Argentina</span>
                 </div>
@@ -465,6 +484,7 @@
                     <div class="flex items-start gap-4"><i class="fa-solid fa-envelope text-neon-blue mt-1"></i><div><span class="block text-gray-500 text-xs">EMAIL</span><a href="mailto:tomicancheff@gmail.com" class="text-white hover:text-neon-blue transition-colors">tomicancheff@gmail.com</a></div></div>
                     <div class="pt-4 flex flex-col gap-3">
                         <a href="https://www.linkedin.com/in/tomas-cancheff-576545243/" target="_blank" class="flex items-center gap-3 p-3 border border-gray-700 hover:border-neon-blue hover:bg-white/5 transition-all group"><i class="fa-brands fa-linkedin text-xl text-gray-400 group-hover:text-neon-blue"></i><span class="text-gray-300 group-hover:text-white">LinkedIn Profile</span></a>
+                        <a href="https://github.com/tomi-cancheff" target="_blank" class="flex items-center gap-3 p-3 border border-gray-700 hover:border-gray-400 hover:bg-white/5 transition-all group"><i class="fa-brands fa-github text-xl text-gray-400 group-hover:text-white"></i><span class="text-gray-300 group-hover:text-white">GitHub Profile</span></a>
                         <a href="https://decaroxgames.itch.io/" target="_blank" class="flex items-center gap-3 p-3 border border-gray-700 hover:border-neon-pink hover:bg-white/5 transition-all group"><i class="fa-brands fa-itch-io text-xl text-gray-400 group-hover:text-neon-pink"></i><span class="text-gray-300 group-hover:text-white">Itch.io Portfolio</span></a>
                     </div>
                 </div>
@@ -479,7 +499,7 @@
     </main>
 
     <footer class="text-center py-8 font-mono text-xs text-gray-600 relative z-10 border-t border-white/5">
-        <p>PRESS START TO CONTINUE • © 2024 TOMAS CANCHEFF</p>
+        <p>GAME DESIGNER WEB PORTFOLIO. 2025 TOMAS CANCHEFF</p>
         <p class="mt-2 text-[10px] opacity-50">HINT: TRY THE KONAMI CODE</p>
     </footer>
 
@@ -512,44 +532,52 @@
             es: {
                 nav_stats: "STATS", nav_exp: "EXP", nav_inv: "INVENTORY", nav_side: "SIDE QUESTS", nav_skills: "SKILLS", nav_edu: "ACADEMIC",
                 hero_status: "SISTEMA LISTO", hero_role: "GAME DESIGNER",
-                hero_desc: "¡Te doy la bienvenida a mi portfolio! ¿Estás listo/a para iniciar esta misión?",
+                hero_desc: "Aquí comienza tu misión. ¿Estás listo?",
                 btn_start: "Start Game", stats_title: "CHARACTER STATS",
                 bio_title: "Tomas Cancheff | Technical Game Designer",
-                bio_text: "Game Designer con más de dos años de experiencia profesional, especializado en diseño de sistemas y prototipado de mecánicas en Unity (C#) y Unreal Engine. Actualmente enfocado en el sector EdTech.",
+                bio_text: "Game Designer con más de dos años de experiencia profesional, especializado en diseño de sistemas y prototipado de mecánicas en Unity (C#) y Unreal Engine (Blueprints). Actualmente enfocado en el sector EdTech y la gamificación.",
                 skill_prog: "TECHNICAL SCRIPTING", skill_theory: "GAME DESIGN & SYSTEMS", skill_ld: "LEVEL DESIGN", skill_proto: "RAPID PROTOTYPING",
                 exp_title: "EXPERIENCE POINTS", exp1_role: "GAME DESIGNER | TGA Company", exp1_date: "Noviembre 2023 – Actualidad",
                 exp1_p1: "Lidero el game design de cinco títulos B2B EdTech para clientes de LATAM y EE.UU.",
-                exp1_p2: "Impulso flujos de trabajo asistidos por IA para prototipado rápido, reduciendo tiempos en 20-30%.",
+                exp1_p2: "Impulso flujos de trabajo asistidos por IA para prototipado rápido, reduciendo tiempos de producción aproximadamente un 20-30%.",
                 exp1_p3: "Diseño sistemas de juego escalables junto con su documentación (GDDs, Briefs, Spec Docs).",
-                exp1_p4: "Colaboro estrechamente con los equipos de narrativa, desarrollo y arte.",
+                exp1_p4: "Colaboro estrechamente con los equipos de narrativa, desarrollo, arte, comercial e instruccional.",
                 sq_title: "SIDE QUESTS",
                 sq1_desc: "Juego arcade de combate 3D con multijugador local y soporte multiplataforma.",
+                sq2_date: "UE4 (Blueprints) | Ago 2023",
                 sq2_desc: "Título de terror 3D, integración de Blueprints para IA enemiga.",
+                sq3_date: "Unity (C#) | Sep 2021",
                 sq3_desc: "Arcade de minigolf basado en físicas y diseño de niveles.",
-                skill_tree_title: "SKILL TREE", st_engines: "MOTORES & CÓDIGO", st_gd_1: "• Sistemas de Juego", st_gd_2: "• Diseño de Niveles", st_gd_3: "• Balanceo de Mecánicas", st_gd_4: "• Documentación (GDD, Briefs)", st_ai: "IA Y PROTOTIPADO", st_ai_desc: "Uso de LLMs para optimizar flujos de trabajo y prototipado.", st_tools: "HERRAMIENTAS", st_lang: "IDIOMAS",
-                edu_title: "REGISTRO ACADÉMICO", edu_degree: "Técnico Universitario en Desarrollo de Software y Videojuegos", edu_focus: "Enfoque: Game Design técnico, C# y Diseño de Juegos en Unity/Unreal.", btn_show: "VER TÍTULO",
+                skill_tree_title: "SKILL TREE", st_engines: "MOTORES & CÓDIGO", 
+                st_gd_1: "• Sistemas de Juego", st_gd_2: "• Diseño de Niveles", st_gd_3: "• Balanceo de Mecánicas", st_gd_4: "• Documentación (GDD, Feature Briefs, Spec Docs, High Concepts)", st_gd_5: "• QA & Playtesting",
+                st_ai: "IA Y PROTOTIPADO", st_ai_desc: "Uso de agentes para aceleración de procesos de prototipado como creación de código o asistencia en el armado de documentación.", st_tools: "HERRAMIENTAS", st_lang: "IDIOMAS", lang_es: "Español",
+                edu_title: "REGISTRO ACADÉMICO", edu_degree: "Técnico Universitario en Desarrollo de Software y Videojuegos", edu_focus: "Enfoque: Game Design técnico, C# y Diseño de Juegos en Unity/Unreal.", edu_date: "<i class='fa-solid fa-calendar'></i> Ago 2019 – Dic 2023", btn_show: "VER TÍTULO",
                 contact_title: "INVENTARIO", label_name: "NOMBRE JUGADOR", label_msg: "DESCRIPCIÓN QUEST", btn_send: "ENVIAR MENSAJE",
                 lvl: "LVL. 28", hp_scroll: "HP (SCROLL)"
             },
             en: {
                 nav_stats: "STATS", nav_exp: "EXP", nav_inv: "INVENTORY", nav_side: "SIDE QUESTS", nav_skills: "SKILLS", nav_edu: "ACADEMIC",
                 hero_status: "SYSTEM READY", hero_role: "GAME DESIGNER",
-                hero_desc: "Welcome to my portfolio! Are you ready to start this mission?",
+                hero_desc: "Here starts your mission. Are you ready?",
                 btn_start: "Start Game", stats_title: "CHARACTER STATS",
                 bio_title: "Tomas Cancheff | Technical Game Designer",
-                bio_text: "Game Designer with over two years of professional experience, specialized in system design and mechanics prototyping in Unity (C#) and Unreal Engine. Currently focused on EdTech.",
+                bio_text: "Game Designer with over two years of professional experience, specialized in system design and mechanics prototyping in Unity (C#) and Unreal Engine (Blueprints). Currently focused on EdTech and gamification.",
                 skill_prog: "TECHNICAL SCRIPTING", skill_theory: "GAME DESIGN & SYSTEMS", skill_ld: "LEVEL DESIGN", skill_proto: "RAPID PROTOTYPING",
                 exp_title: "EXPERIENCE POINTS", exp1_role: "GAME DESIGNER | TGA Company", exp1_date: "November 2023 – Present",
                 exp1_p1: "Leading game design for five B2B EdTech titles for LATAM and US clients.",
-                exp1_p2: "Driving AI-assisted workflows for rapid prototyping, reducing turnaround times by 20-30%.",
-                exp1_p3: "Designing scalable game systems along with documentation (GDDs, Spec Docs).",
-                exp1_p4: "Collaborating closely with narrative, development, and art teams.",
+                exp1_p2: "Driving AI-assisted workflows for rapid prototyping, reducing production times by approximately 20-30%.",
+                exp1_p3: "Designing scalable game systems along with documentation (GDDs, Briefs, Spec Docs).",
+                exp1_p4: "Collaborating closely with narrative, development, art, commercial, and instructional teams.",
                 sq_title: "SIDE QUESTS",
                 sq1_desc: "3D arcade combat game with local multiplayer and cross-platform support.",
+                sq2_date: "UE4 (Blueprints) | Aug 2023",
                 sq2_desc: "3D horror title, integrating Blueprints for AI enemy behavior.",
+                sq3_date: "Unity (C#) | Sep 2021",
                 sq3_desc: "Physics-based minigolf arcade game and level design.",
-                skill_tree_title: "SKILL TREE", st_engines: "ENGINES & CODE", st_gd_1: "• Game Systems", st_gd_2: "• Level Design", st_gd_3: "• Mechanics Balancing", st_gd_4: "• Documentation (GDD, Briefs)", st_ai: "AI & PROTOTYPING", st_ai_desc: "Using LLMs to optimize workflows and accelerate prototyping.", st_tools: "TOOLS", st_lang: "LANGUAGES",
-                edu_title: "ACADEMIC LOG", edu_degree: "University Technician in Software & Game Development", edu_focus: "Focus: Technical Game Design, C# and Game Design in Unity/Unreal.", btn_show: "SHOW TITLE",
+                skill_tree_title: "SKILL TREE", st_engines: "ENGINES & CODE", 
+                st_gd_1: "• Game Systems", st_gd_2: "• Level Design", st_gd_3: "• Mechanics Balancing", st_gd_4: "• Documentation (GDD, Feature Briefs, Spec Docs, High Concepts)", st_gd_5: "• QA & Playtesting",
+                st_ai: "AI & PROTOTYPING", st_ai_desc: "Using agents to accelerate prototyping processes such as code creation or documentation assistance.", st_tools: "TOOLS", st_lang: "LANGUAGES", lang_es: "Spanish",
+                edu_title: "ACADEMIC LOG", edu_degree: "Associate's Degree in Software & Game Development", edu_focus: "Focus: Technical Game Design, C# and Game Design in Unity/Unreal.", edu_date: "<i class='fa-solid fa-calendar'></i> Aug 2019 – Dec 2023", btn_show: "SHOW TITLE",
                 contact_title: "INVENTORY", label_name: "PLAYER NAME", label_msg: "QUEST DESCRIPTION", btn_send: "SEND MESSAGE",
                 lvl: "LVL. 28", hp_scroll: "HP (SCROLL)"
             }
@@ -574,19 +602,6 @@
             window.location.href = `mailto:tomicancheff@gmail.com?subject=${encodeURIComponent(`New Quest from ${name}`)}&body=${encodeURIComponent(`Player Name: ${name}\n\nQuest Description:\n${message}`)}`;
         });
 
-        // Theme
-        const themeBtn = document.getElementById('theme-btn');
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode');
-            themeBtn.querySelector('i').classList.replace('fa-sun', 'fa-moon');
-        }
-        themeBtn.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            const isLight = document.body.classList.contains('light-mode');
-            themeBtn.querySelector('i').className = isLight ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        });
-
         // Grid
         function initGrid() {
             const canvas = document.getElementById('bg-grid'), ctx = canvas.getContext('2d');
@@ -597,11 +612,10 @@
             
             const gs = 40;
             function draw() {
-                const light = document.body.classList.contains('light-mode');
-                ctx.fillStyle = light ? '#f0f0f0' : '#050510';
+                ctx.fillStyle = '#050510';
                 ctx.fillRect(0,0,w,h);
-                const base = light ? 'rgba(0,0,0,0.1)' : 'rgba(0,243,255,0.15)';
-                const active = light ? 'rgba(0,0,0,0.5)' : '#00f3ff';
+                const base = 'rgba(0,243,255,0.15)';
+                const active = '#00f3ff';
                 const myMove = (Date.now()*0.05)%gs;
 
                 ctx.lineWidth = 1;
@@ -614,9 +628,9 @@
                     ctx.strokeStyle = Math.abs(yp-my)<100 ? active : base;
                     ctx.beginPath(); ctx.moveTo(0,yp); ctx.lineTo(w,yp); ctx.stroke();
                 }
-                if(!light) {
-                    ctx.strokeStyle = active; ctx.lineWidth = 2; ctx.strokeRect(mx-10,my-10,20,20);
-                }
+                
+                ctx.strokeStyle = active; ctx.lineWidth = 2; ctx.strokeRect(mx-10,my-10,20,20);
+                
                 requestAnimationFrame(draw);
             }
             draw();
