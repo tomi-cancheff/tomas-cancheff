@@ -45,7 +45,7 @@ Este sitio está configurado para ser alojado en GitHub Pages.
 
 📬 Contacto
 
-Portfolio Web: [Soon]
+Portfolio Web: https://tomi-cancheff.github.io/tomas-cancheff/#about
 
 Itch.io: decaroxgames.itch.io
 
