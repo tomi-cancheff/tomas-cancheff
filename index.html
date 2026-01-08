@@ -184,7 +184,6 @@
                 <a href="#experience" class="hover:text-neon-pink transition-colors">EXP</a>
                 <a href="#skills" class="hover:text-neon-pink transition-colors" data-translate="nav_skills">SKILLS</a>
                 <a href="#education" class="hover:text-neon-pink transition-colors" data-translate="nav_edu">ACADEMIC</a>
-                <!-- Updated Nav Item -->
                 <a href="#contact" class="hover:text-neon-pink transition-colors" data-translate="nav_inv">QUEST BOARD</a>
             </nav>
             <button id="lang-btn" class="font-pixel text-xs border border-neon-blue px-2 py-1 text-neon-blue hover:bg-neon-blue hover:text-black transition-colors">ES</button>
@@ -198,7 +197,6 @@
             <li><a href="#experience" class="block text-white hover:text-neon-pink">EXP</a></li>
             <li><a href="#skills" class="block text-white hover:text-neon-pink" data-translate="nav_skills">SKILLS</a></li>
             <li><a href="#education" class="block text-white hover:text-neon-pink" data-translate="nav_edu">ACADEMIC</a></li>
-            <!-- Updated Mobile Menu Item -->
             <li><a href="#contact" class="block text-white hover:text-neon-pink" data-translate="nav_inv">QUEST BOARD</a></li>
         </ul>
     </div>
@@ -236,7 +234,7 @@
                 <div class="project-card p-6 relative group">
                     <div class="absolute -top-2 -right-2 bg-neon-pink text-black font-pixel text-xs px-2 py-1">RARE</div>
                     <div class="w-full aspect-square bg-gray-900 mb-4 flex items-center justify-center border border-white/10 overflow-hidden relative">
-                         <!-- NUEVA IMAGEN DE PERFIL: Asegúrate de guardarla como tomas_profile_final.jpg -->
+                         <!-- NUEVA IMAGEN DE PERFIL -->
                          <img src="assets/tomas_profile_final.jpg" alt="Tomas Cancheff" class="w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                          <div class="text-center hidden">
                              <i class="fa-solid fa-user-gear text-8xl text-white/20"></i>
@@ -250,7 +248,7 @@
                     </p>
                 </div>
 
-                <!-- Skill Selectors (Reemplazo de Barras) -->
+                <!-- Skill Selectors -->
                 <div class="flex flex-col justify-center space-y-6 bg-black/60 p-6 border-l-2 border-neon-blue backdrop-blur-sm">
                     
                     <!-- Skill 1 -->
@@ -316,11 +314,12 @@
                     </div>
                     <div class="relative z-10">
                         <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 border-b border-gray-700 pb-4">
-                            <h3 class="font-pixel text-lg md:text-xl text-white group-hover:text-neon-green transition-colors" data-translate="exp1_role">GAME DESIGNER | TGA Company</h3>
+                            <!-- Link a TGA Company agregado aqui con data-translate -->
+                            <h3 class="font-pixel text-lg md:text-xl text-white group-hover:text-neon-green transition-colors" data-translate="exp1_role">GAME DESIGNER | <a href="https://tgacompany.com/" target="_blank" class="text-neon-blue hover:underline">TGA Company</a></h3>
                             <span class="font-mono text-neon-green text-sm mt-2 md:mt-0" data-translate="exp1_date">Noviembre 2023 – Actualidad</span>
                         </div>
                         <ul class="font-mono text-sm md:text-base text-gray-300 space-y-3 list-disc pl-5 marker:text-neon-blue">
-                            <li data-translate="exp1_p1">Lidero el game design de cinco títulos B2B EdTech para clientes de LATAM y EE.UU.</li>
+                            <li data-translate="exp1_p1">Lidero el game design de tres títulos B2B EdTech para clientes de LATAM y EE.UU.</li>
                             <li data-translate="exp1_p2">Impulso flujos de trabajo asistidos por IA para prototipado rápido, reduciendo tiempos de producción aproximadamente un 20-30%.</li>
                             <li data-translate="exp1_p3">Diseño sistemas de juego escalables junto con su documentación (GDDs, Briefs, Spec Docs).</li>
                             <li data-translate="exp1_p4">Colaboro estrechamente con los equipos de narrativa, desarrollo, arte, comercial e instruccional.</li>
@@ -444,12 +443,12 @@
                         <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Google Workspace</span>
                     </div>
                 </div>
-                <!-- Languages -->
+                <!-- Languages - ACTUALIZADO CON TRADUCCIÓN COMPLETA -->
                 <div class="skill-card p-6 border-2 border-gray-700 bg-black/60 hover:border-white transition-colors">
                     <h3 class="font-pixel text-sm text-white mb-4 flex items-center gap-2"><i class="fa-solid fa-language"></i> <span data-translate="st_lang">LANGUAGES</span></h3>
                     <ul class="font-mono text-sm text-gray-300 space-y-2">
-                        <li><span class="text-neon-blue">EN</span> English (C1)</li>
-                        <li><span class="text-neon-green">ES</span> <span data-translate="lang_es">Español</span> (Nativo)</li>
+                        <li><span class="text-neon-blue">EN</span> <span data-translate="lang_en">English</span> (C1)</li>
+                        <li><span class="text-neon-green">ES</span> <span data-translate="lang_es">Español (Nativo)</span></li>
                     </ul>
                 </div>
             </div>
@@ -557,8 +556,11 @@
                 skill_theory: "DISEÑO DE JUEGOS Y SISTEMAS", 
                 skill_ld: "DISEÑO DE NIVELES", 
                 skill_proto: "PROTOTIPADO RÁPIDO",
-                exp_title: "EXPERIENCE POINTS", exp1_role: "GAME DESIGNER | TGA Company", exp1_date: "Noviembre 2023 – Actualidad",
-                exp1_p1: "Lidero el game design de cinco títulos B2B EdTech para clientes de LATAM y EE.UU.",
+                exp_title: "EXPERIENCE POINTS", 
+                // HTML injectado en el string para mantener el link en la traducción
+                exp1_role: "GAME DESIGNER | <a href='https://tgacompany.com/' target='_blank' class='text-neon-blue hover:underline'>TGA Company</a>", 
+                exp1_date: "Noviembre 2023 – Actualidad",
+                exp1_p1: "Lidero el game design de tres títulos B2B EdTech para clientes de LATAM y EE.UU.",
                 exp1_p2: "Impulso flujos de trabajo asistidos por IA para prototipado rápido, reduciendo tiempos de producción aproximadamente un 20-30%.",
                 exp1_p3: "Diseño sistemas de juego escalables junto con su documentación (GDDs, Briefs, Spec Docs).",
                 exp1_p4: "Colaboro estrechamente con los equipos de narrativa, desarrollo, arte, comercial e instruccional.",
@@ -570,7 +572,8 @@
                 sq3_desc: "Arcade de minigolf basado en físicas y diseño de niveles.",
                 skill_tree_title: "SKILL TREE", st_engines: "MOTORES & CÓDIGO", 
                 st_gd_1: "• Sistemas de Juego", st_gd_2: "• Diseño de Niveles", st_gd_3: "• Balanceo de Mecánicas", st_gd_4: "• Documentación (GDD, Feature Briefs, Spec Docs, High Concepts)", st_gd_5: "• QA & Playtesting",
-                st_ai: "IA Y PROTOTIPADO", st_ai_desc: "Uso de agentes para aceleración de procesos de prototipado como creación de código o asistencia en el armado de documentación.", st_tools: "HERRAMIENTAS", st_lang: "IDIOMAS", lang_es: "Español",
+                st_ai: "IA Y PROTOTIPADO", st_ai_desc: "Uso de agentes para aceleración de procesos de prototipado como creación de código o asistencia en el armado de documentación.", st_tools: "HERRAMIENTAS", st_lang: "IDIOMAS", 
+                lang_en: "Inglés", lang_es: "Español (Nativo)",
                 edu_title: "REGISTRO ACADÉMICO", edu_degree: "Técnico Universitario en Desarrollo de Software y Videojuegos", edu_focus: "Enfoque: Game Design técnico, C# y Diseño de Juegos en Unity/Unreal.", edu_date: "<i class='fa-solid fa-calendar'></i> Ago 2019 – Dic 2023", btn_show: "VER TÍTULO",
                 contact_title: "TABLERO DE MISIONES", label_name: "NOMBRE JUGADOR", label_msg: "DESCRIPCIÓN QUEST", btn_send: "ENVIAR MENSAJE",
                 lvl: "LVL. 28", hp_scroll: "HP (SCROLL)", nav_inv: "TABLERO"
@@ -586,8 +589,10 @@
                 skill_theory: "GAME DESIGN & SYSTEMS", 
                 skill_ld: "LEVEL DESIGN", 
                 skill_proto: "RAPID PROTOTYPING",
-                exp_title: "EXPERIENCE POINTS", exp1_role: "GAME DESIGNER | TGA Company", exp1_date: "November 2023 – Present",
-                exp1_p1: "Leading game design for five B2B EdTech titles for LATAM and US clients.",
+                exp_title: "EXPERIENCE POINTS", 
+                exp1_role: "GAME DESIGNER | <a href='https://tgacompany.com/' target='_blank' class='text-neon-blue hover:underline'>TGA Company</a>", 
+                exp1_date: "November 2023 – Present",
+                exp1_p1: "Leading game design for three B2B EdTech titles for LATAM and US clients.",
                 exp1_p2: "Driving AI-assisted workflows for rapid prototyping, reducing production times by approximately 20-30%.",
                 exp1_p3: "Designing scalable game systems along with documentation (GDDs, Briefs, Spec Docs).",
                 exp1_p4: "Collaborating closely with narrative, development, art, commercial, and instructional teams.",
@@ -599,7 +604,8 @@
                 sq3_desc: "Physics-based minigolf arcade game and level design.",
                 skill_tree_title: "SKILL TREE", st_engines: "ENGINES & CODE", 
                 st_gd_1: "• Game Systems", st_gd_2: "• Level Design", st_gd_3: "• Mechanics Balancing", st_gd_4: "• Documentation (GDD, Feature Briefs, Spec Docs, High Concepts)", st_gd_5: "• QA & Playtesting",
-                st_ai: "AI & PROTOTYPING", st_ai_desc: "Using agents to accelerate prototyping processes such as code creation or documentation assistance.", st_tools: "TOOLS", st_lang: "LANGUAGES", lang_es: "Spanish",
+                st_ai: "AI & PROTOTYPING", st_ai_desc: "Using agents to accelerate prototyping processes such as code creation or documentation assistance.", st_tools: "TOOLS", st_lang: "LANGUAGES", 
+                lang_en: "English", lang_es: "Spanish (Native)",
                 edu_title: "ACADEMIC LOG", edu_degree: "Associate's Degree in Software & Game Development", edu_focus: "Focus: Technical Game Design, C# and Game Design in Unity/Unreal.", edu_date: "<i class='fa-solid fa-calendar'></i> Aug 2019 – Dec 2023", btn_show: "SHOW DEGREE",
                 contact_title: "QUEST BOARD", label_name: "PLAYER NAME", label_msg: "QUEST DESCRIPTION", btn_send: "SEND MESSAGE",
                 lvl: "LVL. 28", hp_scroll: "HP (SCROLL)", nav_inv: "QUEST BOARD"
