@@ -41,7 +41,7 @@ Google Fonts: Tipografías Press Start 2P y Share Tech Mono.
 
 🌐 Despliegue (Deployment)
 
-Este sitio está configurado para ser alojado en GitHub Pages.
+Este sitio está configurado para ser alojado en GitHub Pages (Sitio estático).
 
 📬 Contacto
 
@@ -49,7 +49,7 @@ Portfolio Web: https://tomi-cancheff.github.io/tomas-cancheff/#about
 
 Itch.io: decaroxgames.itch.io
 
-LinkedIn: Tomas Cancheff
+LinkedIn: https://www.linkedin.com/in/tomas-cancheff-576545243/
 
 Email: tomicancheff@gmail.com
 
