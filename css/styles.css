@@ -1,0 +1,99 @@
+        body {
+            background-color: #050510;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: #050510; }
+        ::-webkit-scrollbar-thumb { background: #00f3ff; border: 2px solid #050510; }
+
+        /* Effects */
+        .scanlines {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px; pointer-events: none; z-index: 50; animation: scanlineMove 10s linear infinite;
+        }
+        .screen-glow {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, rgba(0,243,255,0.05) 0%, rgba(0,0,0,0.6) 90%);
+            pointer-events: none; z-index: 49;
+        }
+        .glitch-hover:hover {
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+            color: #ff00ff; text-shadow: 2px 2px #00f3ff;
+        }
+
+        /* Cards */
+        .project-card, .experience-card, .skill-card {
+            transition: all 0.3s ease; border: 2px solid #333; background: rgba(0,0,0,0.7);
+        }
+        .project-card:hover, .experience-card:hover, .skill-card:hover {
+            border-color: #00f3ff; transform: translateY(-5px); box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+        }
+
+        /* Difficulty Selector Style */
+        .diff-selector {
+            display: flex; 
+            gap: 8px; 
+            font-family: "Share Tech Mono", monospace; 
+            font-size: 0.95rem; 
+            width: 100%; 
+        }
+        .diff-level {
+            flex: 1; 
+            text-align: center;
+            padding: 8px 4px; 
+            border: 2px solid #444; 
+            color: #666; 
+            transition: all 0.3s;
+            cursor: default;
+        }
+        .diff-level.active {
+            border-color: currentColor; 
+            background: rgba(255,255,255,0.1); 
+            font-weight: bold; 
+            text-shadow: 0 0 8px currentColor;
+            transform: scale(1.05); 
+        }
+
+        /* Scroll Buttons */
+        .scroll-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            z-index: 20; background: rgba(0,0,0,0.8); border: 1px solid #00f3ff;
+            color: #00f3ff; width: 40px; height: 40px; display: flex;
+            align-items: center; justify-content: center; cursor: pointer;
+            transition: all 0.3s;
+        }
+        .scroll-btn:hover { background: #00f3ff; color: #000; box-shadow: 0 0 10px #00f3ff; }
+        .scroll-left { left: -20px; }
+        .scroll-right { right: -20px; }
+
+        canvas#bg-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        
+        /* Utils */
+        .text-glow-blue { text-shadow: 0 0 5px #00f3ff, 0 0 10px #00f3ff; }
+        .text-glow-pink { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
+        .start-btn-glow {
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2); animation: pulse-border 2s infinite;
+        }
+        
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 5px rgba(0, 243, 255, 0.2); border-color: #00f3ff; }
+            50% { box-shadow: 0 0 20px rgba(0, 243, 255, 0.6); border-color: #fff; }
+            100% { box-shadow: 0 0 5px rgba(0, 243, 255, 0.2); border-color: #00f3ff; }
+        }
+
+        /* Loader */
+        #loader {
+            position: fixed; inset: 0; background: #000; z-index: 100;
+            display: flex; justify-content: center; align-items: center; flex-direction: column; transition: opacity 0.5s ease;
+        }
+        
+        /* Side Quest Overlay Gradient */
+        .sq-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.4) 100%);
+        }
+    
