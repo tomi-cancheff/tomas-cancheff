@@ -53,11 +53,11 @@ LinkedIn: https://www.linkedin.com/in/tomas-cancheff-576545243/
 
 Email: tomicancheff@gmail.com
 
----------------------------------------
-#UPDATES:
+Press Start to Continue...
+
 ## SEO / Open Graph
 
-- Se incorporaron metaetiquetas Open Graph y Twitter Card en `index.html` para mejorar la previsualización del portfolio en LinkedIn, X/Twitter y otras plataformas.
+Se incorporaron metaetiquetas Open Graph y Twitter Card en `index.html` para mejorar la previsualización del portfolio en LinkedIn, X/Twitter y otras plataformas.
 
 - `og:title`: Tomas Cancheff | Game Designer & Developer
 - `og:description`: resumen profesional del perfil
