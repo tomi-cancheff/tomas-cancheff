@@ -1,10 +1,10 @@
-*🎮 Portfolio: Tomas Cancheff | Game Designer*
+*🎮 Portfolio: Tomas Cancheff | Game Designer & Game Developer*
 
-Portfolio web estático con estética Cyberpunk/Neon, diseñado para mostrar experiencia en Game Design, prototipos y habilidades técnicas.
+Portfolio web estático con estética Cyberpunk/Neon, diseñado para mostrar experiencia en Game Design, Game Development, prototipos y habilidades técnicas.
 
 📋 Sobre el Proyecto
 
-Este repositorio contiene el código fuente de mi portfolio personal. El objetivo es presentar mi perfil como Technical Game Designer a través de una interfaz inmersiva y gamificada.
+Este repositorio contiene el código fuente de mi portfolio personal. El objetivo es presentar mi perfil como Desarrollador de videojuegos y Diseñador de Videojuegos a través de una interfaz inmersiva y gamificada.
 
 El sitio es completamente estático (sin backend), optimizado para cargar instantáneamente y ser desplegado fácilmente en servicios como GitHub Pages.
 
