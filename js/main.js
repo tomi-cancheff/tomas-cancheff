@@ -91,7 +91,8 @@
                 lang_en: "Inglés", lang_es: "Español (Nativo)",
                 edu_title: "REGISTRO ACADÉMICO", edu_completed: "COMPLETED", edu_bs_title: "Desarrollo con Inteligencia Artificial", edu_bs_inst: "Big School", edu_bs_date: "<i class='fa-solid fa-calendar'></i> Febrero 2026 (Completo)", edu_bs_focus: "Enfoque: Ingeniería de prompts técnicos para generación de código, definición de proyectos con agentes de IA, automatización de flujos de programación e integración de agentes.", edu_bs_btn: "VER CERTIFICADO", edu_degree: "Técnico Universitario en Desarrollo de Software y Videojuegos", edu_focus: "Enfoque: Game Design técnico, C# y Diseño de Juegos en Unity/Unreal.", edu_date: "<i class='fa-solid fa-calendar'></i> Ago 2019 – Dic 2023", btn_show: "VER TÍTULO",
                 contact_title: "TABLERO DE MISIONES", label_name: "NOMBRE JUGADOR", label_msg: "DESCRIPCIÓN QUEST", btn_send: "ENVIAR MENSAJE",
-                lvl: "LVL. 28", hp_scroll: "HP (SCROLL)", nav_inv: "TABLERO"
+                lvl: "LVL. 28", hp_scroll: "HP (SCROLL)", nav_inv: "TABLERO",
+                technical_abilities_title: "HABILIDADES TÉCNICAS", passive_abilities_title: "HABILIDADES PASIVAS"
             },
             en: {
                 nav_stats: "STATS", nav_exp: "EXP", nav_inv: "QUEST BOARD", nav_side: "SIDE QUESTS", nav_skills: "SKILLS", nav_edu: "ACADEMIC",
@@ -142,7 +143,8 @@
                 lang_en: "English", lang_es: "Spanish (Native)",
                 edu_title: "ACADEMIC LOG", edu_completed: "COMPLETED", edu_bs_title: "Artificial Intelligence Development", edu_bs_inst: "Big School", edu_bs_date: "<i class='fa-solid fa-calendar'></i> February 2026 (Completed)", edu_bs_focus: "Focus: Technical prompt engineering for code generation, AI-driven project definition, automated programming workflows and AI agent integration.", edu_bs_btn: "VIEW CERTIFICATE", edu_degree: "Associate's Degree in Software & Game Development", edu_focus: "Focus: Technical Game Design, C# and Game Design in Unity/Unreal.", edu_date: "<i class='fa-solid fa-calendar'></i> Aug 2019 – Dec 2023", btn_show: "SHOW DEGREE",
                 contact_title: "QUEST BOARD", label_name: "PLAYER NAME", label_msg: "QUEST DESCRIPTION", btn_send: "SEND MESSAGE",
-                lvl: "LVL. 28", hp_scroll: "HP (SCROLL)", nav_inv: "QUEST BOARD"
+                lvl: "LVL. 28", hp_scroll: "HP (SCROLL)", nav_inv: "QUEST BOARD",
+                technical_abilities_title: "TECHNICAL ABILITIES", passive_abilities_title: "PASSIVE ABILITIES"
             }
         };
 
