@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -132,7 +132,7 @@
                 TOMAS<br><span class="text-neon-pink text-glow-pink glitch-hover cursor-default">CANCHEFF</span>
             </h1>
             <h2 class="font-pixel text-lg md:text-2xl text-neon-green mb-8 tracking-widest" data-translate="hero_role">GAME DESIGNER & DEVELOPER</h2>
-            
+
             <p class="font-mono text-lg md:text-xl max-w-2xl text-gray-300 mb-8 border-l-4 border-neon-blue pl-4 text-left mx-auto bg-black/50 p-4" data-translate="hero_desc">
                 Aquí comienza tu misión. ¿Estás listo?
             </p>
@@ -169,53 +169,64 @@
                     </p>
                 </div>
 
-                <!-- Skill Selectors -->
-                <div class="flex flex-col justify-center space-y-6 bg-black/60 p-6 border-l-2 border-neon-blue backdrop-blur-sm">
-                    
-                    <!-- Skill 1 -->
-                    <div>
-                        <div class="font-pixel text-xs mb-2 text-neon-blue" data-translate="skill_prog">TECHNICAL SCRIPTING</div>
-                        <div class="diff-selector text-neon-blue">
-                            <span class="diff-level">LOW</span>
-                            <span class="diff-level">MED</span>
-                            <span class="diff-level active">HIGH</span>
-                            <span class="diff-level">EXP</span>
+                <!-- Skill Tags -->
+                <div class="h-full bg-black/60 p-6 border-l-2 border-neon-blue backdrop-blur-sm flex flex-col justify-between">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 content-start items-start">
+                        <div class="skill-tag-card border border-neon-blue/40 p-4 bg-black/40">
+                            <div class="font-pixel text-xs mb-3 text-neon-blue" data-translate="skill_prog">TECHNICAL SCRIPTING</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 border border-neon-blue text-neon-blue text-xs bg-neon-blue/10">C#</span>
+                                <span class="px-2 py-1 border border-neon-blue text-neon-blue text-xs bg-neon-blue/10">Unity API</span>
+                                <span class="px-2 py-1 border border-neon-blue text-neon-blue text-xs bg-neon-blue/10">OOP</span>
+                                <span class="px-2 py-1 border border-neon-blue text-neon-blue text-xs bg-neon-blue/10">Design Patterns</span>
+                                <span class="px-2 py-1 border border-neon-blue text-neon-blue text-xs bg-neon-blue/10">Blueprints (UE)</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-tag-card border border-neon-pink/40 p-4 bg-black/40">
+                            <div class="font-pixel text-xs mb-3 text-neon-pink" data-translate="skill_theory">GAME DESIGN & SYSTEMS</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 border border-neon-pink text-neon-pink text-xs bg-neon-pink/10">Core Loop Design</span>
+                                <span class="px-2 py-1 border border-neon-pink text-neon-pink text-xs bg-neon-pink/10">Balancing</span>
+                                <span class="px-2 py-1 border border-neon-pink text-neon-pink text-xs bg-neon-pink/10">GDD</span>
+                                <span class="px-2 py-1 border border-neon-pink text-neon-pink text-xs bg-neon-pink/10">Feature Briefs</span>
+                                <span class="px-2 py-1 border border-neon-pink text-neon-pink text-xs bg-neon-pink/10">Spec Docs</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-tag-card border border-neon-green/40 p-4 bg-black/40">
+                            <div class="font-pixel text-xs mb-3 text-neon-green" data-translate="skill_ld">LEVEL DESIGN</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 border border-neon-green text-neon-green text-xs bg-neon-green/10">Spatial Design</span>
+                                <span class="px-2 py-1 border border-neon-green text-neon-green text-xs bg-neon-green/10">Puzzle Design</span>
+                                <span class="px-2 py-1 border border-neon-green text-neon-green text-xs bg-neon-green/10">Blockout</span>
+                                <span class="px-2 py-1 border border-neon-green text-neon-green text-xs bg-neon-green/10">Player Flow</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-tag-card border border-yellow-400/40 p-4 bg-black/40">
+                            <div class="font-pixel text-xs mb-3 text-yellow-400" data-translate="skill_proto">RAPID PROTOTYPING</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 border border-yellow-400 text-yellow-400 text-xs bg-yellow-400/10">Unity Prototyping</span>
+                                <span class="px-2 py-1 border border-yellow-400 text-yellow-400 text-xs bg-yellow-400/10">AI-Assisted Dev</span>
+                                <span class="px-2 py-1 border border-yellow-400 text-yellow-400 text-xs bg-yellow-400/10">Rapid Iteration</span>
+                                <span class="px-2 py-1 border border-yellow-400 text-yellow-400 text-xs bg-yellow-400/10">Playtesting</span>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Skill 2 -->
-                    <div>
-                        <div class="font-pixel text-xs mb-2 text-neon-pink" data-translate="skill_theory">GAME DESIGN & SYSTEMS</div>
-                        <div class="diff-selector text-neon-pink">
-                            <span class="diff-level">LOW</span>
-                            <span class="diff-level">MED</span>
-                            <span class="diff-level">HIGH</span>
-                            <span class="diff-level active">EXP</span>
+                    <div class="skill-tag-card mt-4 border border-white/30 p-4 bg-black/40">
+                        <div class="font-pixel text-xs mb-3 text-gray-200 flex items-center gap-2">
+                            <i class="fa-solid fa-shield text-gray-300"></i>
+                            <span>PASSIVE ABILITIES</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 border border-gray-400 text-gray-200 text-xs bg-white/5">Agile / Scrum</span>
+                            <span class="px-2 py-1 border border-gray-400 text-gray-200 text-xs bg-white/5">Cross-Functional Communication</span>
+                            <span class="px-2 py-1 border border-gray-400 text-gray-200 text-xs bg-white/5">Problem Solving</span>
+                            <span class="px-2 py-1 border border-gray-400 text-gray-200 text-xs bg-white/5">Adaptability</span>
                         </div>
                     </div>
-
-                    <!-- Skill 3 -->
-                    <div>
-                        <div class="font-pixel text-xs mb-2 text-neon-green" data-translate="skill_ld">LEVEL DESIGN</div>
-                        <div class="diff-selector text-neon-green">
-                            <span class="diff-level">LOW</span>
-                            <span class="diff-level">MED</span>
-                            <span class="diff-level active">HIGH</span>
-                            <span class="diff-level">EXP</span>
-                        </div>
-                    </div>
-
-                    <!-- Skill 4 -->
-                    <div>
-                        <div class="font-pixel text-xs mb-2 text-yellow-400" data-translate="skill_proto">RAPID PROTOTYPING</div>
-                        <div class="diff-selector text-yellow-400">
-                            <span class="diff-level">LOW</span>
-                            <span class="diff-level">MED</span>
-                            <span class="diff-level">HIGH</span>
-                            <span class="diff-level active">EXP</span>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
@@ -246,6 +257,24 @@
                         </ul>
                     </div>
                 </article>
+
+                <article class="experience-card p-6 md:p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-vial-circle-check text-9xl text-white"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 border-b border-gray-700 pb-4">
+                            <h3 class="font-pixel text-lg md:text-xl text-white group-hover:text-neon-green transition-colors" data-translate="exp2_role">QA TESTER FREELANCE | <a href="https://playgbtn.com/" target="_blank" rel="noopener noreferrer" class="text-neon-blue hover:underline">GBTN – Keyword Studios</a></h3>
+                            <span class="font-mono text-neon-green text-sm mt-2 md:mt-0" data-translate="exp2_date">Diciembre 2025 – Actualidad</span>
+                        </div>
+                        <ul class="font-mono text-sm md:text-base text-gray-300 space-y-3 list-disc pl-5 marker:text-neon-blue">
+                            <li data-translate="exp2_p1">Participo en sesiones de testing funcional de corta y media duración para títulos mobile, PC y consola dentro de la red Global Beta Testers Network.</li>
+                            <li data-translate="exp2_p2">Ejecuto casos de prueba en distintas plataformas, reportando bugs y comportamientos inesperados con criterio técnico y de game design.</li>
+                            <li data-translate="exp2_p3">Redacto documentación de testing clara y estructurada, incluyendo pasos de reproducción, severidad y evidencia visual cuando corresponde.</li>
+                            <li data-translate="exp2_p4">Colaboro de forma remota y asincrónica adaptándome a los tiempos y requerimientos de cada sesión.</li>
+                        </ul>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -255,13 +284,34 @@
                 <i class="fa-solid fa-gamepad text-neon-pink text-3xl"></i>
                 <h2 class="font-pixel text-2xl md:text-3xl" data-translate="sq_title">SIDE QUESTS</h2>
             </div>
-            
+
             <!-- Scroll Controls -->
             <button class="scroll-btn scroll-left hidden md:flex" onclick="scrollSideQuests(-1)"><i class="fa-solid fa-chevron-left"></i></button>
             <button class="scroll-btn scroll-right hidden md:flex" onclick="scrollSideQuests(1)"><i class="fa-solid fa-chevron-right"></i></button>
 
             <div id="sq-container" class="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory scrollbar-thin scroll-smooth">
-                
+
+                <!-- CLAUDE UNITY ASSISTANT -->
+                <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
+                    <div class="absolute inset-0 bg-gray-900">
+                        <img loading="lazy" decoding="async" src="assets/claude-logo.jpg" alt="Claude Unity Assistant" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-wand-magic-sparkles text-8xl text-white/10"></i></div>
+                    </div>
+                    <div class="relative z-10 p-6 flex flex-col h-full justify-between sq-overlay">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-blue text-glow-blue" data-translate="sq_claude_title">CLAUDE UNITY ASSISTANT</h3>
+                                <span class="text-[10px] font-pixel text-neon-blue border border-neon-blue px-2 py-1 bg-black/50">EDITOR TOOL</span>
+                            </div>
+                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1">Unity Editor | AI</p>
+                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq_claude_desc">Una herramienta para Unity Editor que integra la API de Claude (Anthropic) para prototipar mecánicas de juego, generar scripts en C# y construir escenas desde prompts en lenguaje natural, sin salir del Editor.</p>
+                        </div>
+                        <div class="flex justify-center mt-4">
+                            <a href="https://github.com/tomi-cancheff/claude-unity-assistant" target="_blank" rel="noopener noreferrer" class="w-full md:w-2/3 text-center border border-gray-500 text-gray-300 py-2 font-pixel text-xs hover:bg-white hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-github mr-1"></i> CODE</a>
+                        </div>
+                    </div>
+                </article>
+
                 <!-- TANK BATTLES -->
                 <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
                     <div class="absolute inset-0 bg-gray-900">
@@ -284,46 +334,23 @@
                     </div>
                 </article>
 
-                 <!-- KYLE AI PROTOTYPE (NEW) -->
-                 <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
+                <!-- GOLFEALO! -->
+                <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
                     <div class="absolute inset-0 bg-gray-900">
-                        <img loading="lazy" decoding="async" src="assets/kyle_ai.jpg" alt="Kyle Prototype" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-robot text-8xl text-white/10"></i></div>
+                        <img loading="lazy" decoding="async" src="assets/golfealo_cover.jpg" alt="Golfealo!" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-golf-ball-tee text-8xl text-white/10"></i></div>
                     </div>
                     <div class="relative z-10 p-6 flex flex-col h-full justify-between sq-overlay">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-green text-glow-blue" data-translate="sq_kyle_title">KYLE AI PROTOTYPE</h3>
-                                <span class="text-[10px] font-pixel text-neon-green border border-neon-green px-2 py-1 bg-black/50">PROTOTYPE</span>
+                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-green text-glow-blue" data-translate="sq3_title">GOLFEALO!</h3>
+                                <span class="text-[10px] font-pixel text-neon-green border border-neon-green px-2 py-1 bg-black/50">DESIGN & ART</span>
                             </div>
-                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1">Unity (C#) | AI</p>
-                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq_kyle_desc">Prototipado de una escena tipo "selector de personaje" en Unity 6.0 utilizando la ayuda del asistente de Unity AI integrado en el editor. Las animaciones, sonidos, música y background así como texturas fueron creadas e iteradas con el agente.</p>
+                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1" data-translate="sq3_date">Unity (C#) | Sep 2021</p>
+                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq3_desc">Arcade de minigolf basado en físicas y diseño de niveles.</p>
                         </div>
                         <div class="flex gap-2 mt-4">
-                            <a href="https://play.unity.com/es/games/c96a5e14-c8b8-4047-aca0-cc094d818065/kyle-prototype" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-neon-green text-neon-green py-2 font-pixel text-xs hover:bg-neon-green hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-unity mr-1"></i> PLAY</a>
-                            <a href="https://github.com/tomi-cancheff/Unity-AI" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-gray-500 text-gray-300 py-2 font-pixel text-xs hover:bg-white hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-github mr-1"></i> CODE</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- UNITY ESSENTIALS (NEW) -->
-                 <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
-                    <div class="absolute inset-0 bg-gray-900">
-                        <img loading="lazy" decoding="async" src="assets/unity_essentials.jpg" alt="Unity Essentials" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-cubes text-8xl text-white/10"></i></div>
-                    </div>
-                    <div class="relative z-10 p-6 flex flex-col h-full justify-between sq-overlay">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-pixel text-lg text-white group-hover:text-yellow-400 text-glow-blue" data-translate="sq_essentials_title">UNITY ESSENTIALS</h3>
-                                <span class="text-[10px] font-pixel text-yellow-400 border border-yellow-400 px-2 py-1 bg-black/50">LEVEL DESIGN</span>
-                            </div>
-                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1">Unity (C#) | 3D</p>
-                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq_essentials_desc">Proyecto basado en el trayecto de Unity Essentials, con múltiples escenas demo y una breve jugable, mostrando competencias básicas del editor, C#, diseño de niveles y diseño de juego.</p>
-                        </div>
-                        <div class="flex gap-2 mt-4">
-                            <a href="https://play.unity.com/es/games/99138d79-e9d5-484c-bd3a-e6e9b3377082/essentials-test-build" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-yellow-400 text-yellow-400 py-2 font-pixel text-xs hover:bg-yellow-400 hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-unity mr-1"></i> PLAY</a>
-                            <a href="https://github.com/tomi-cancheff/Unity-Essentials-Project" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-gray-500 text-gray-300 py-2 font-pixel text-xs hover:bg-white hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-github mr-1"></i> CODE</a>
+                             <a href="https://decaroxgames.itch.io/golfealo" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-neon-green text-neon-green py-2 font-pixel text-xs hover:bg-neon-green hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-itch-io mr-1"></i> PLAY ON ITCH.IO</a>
                         </div>
                     </div>
                 </article>
@@ -370,44 +397,46 @@
                     </div>
                 </article>
 
-                <!-- CLAUDE UNITY ASSISTANT -->
+                <!-- KYLE AI PROTOTYPE -->
                 <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
                     <div class="absolute inset-0 bg-gray-900">
-                        <img loading="lazy" decoding="async" src="assets/claude-logo.jpg" alt="Claude Unity Assistant" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-wand-magic-sparkles text-8xl text-white/10"></i></div>
+                        <img loading="lazy" decoding="async" src="assets/kyle_ai.jpg" alt="Kyle Prototype" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-robot text-8xl text-white/10"></i></div>
                     </div>
                     <div class="relative z-10 p-6 flex flex-col h-full justify-between sq-overlay">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-blue text-glow-blue" data-translate="sq_claude_title">CLAUDE UNITY ASSISTANT</h3>
-                                <span class="text-[10px] font-pixel text-neon-blue border border-neon-blue px-2 py-1 bg-black/50">EDITOR TOOL</span>
+                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-green text-glow-blue" data-translate="sq_kyle_title">KYLE AI PROTOTYPE</h3>
+                                <span class="text-[10px] font-pixel text-neon-green border border-neon-green px-2 py-1 bg-black/50">PROTOTYPE</span>
                             </div>
-                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1">Unity Editor | AI</p>
-                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq_claude_desc">Una herramienta para Unity Editor que integra la API de Claude (Anthropic) para prototipar mecánicas de juego, generar scripts en C# y construir escenas desde prompts en lenguaje natural, sin salir del Editor.</p>
+                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1">Unity (C#) | AI</p>
+                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq_kyle_desc">Prototipado de una escena tipo "selector de personaje" en Unity 6.0 utilizando la ayuda del asistente de Unity AI integrado en el editor. Las animaciones, sonidos, música y background así como texturas fueron creadas e iteradas con el agente.</p>
                         </div>
-                        <div class="flex justify-center mt-4">
-                            <a href="https://github.com/tomi-cancheff/claude-unity-assistant" target="_blank" rel="noopener noreferrer" class="w-full md:w-2/3 text-center border border-gray-500 text-gray-300 py-2 font-pixel text-xs hover:bg-white hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-github mr-1"></i> CODE</a>
+                        <div class="flex gap-2 mt-4">
+                            <a href="https://play.unity.com/es/games/c96a5e14-c8b8-4047-aca0-cc094d818065/kyle-prototype" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-neon-green text-neon-green py-2 font-pixel text-xs hover:bg-neon-green hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-unity mr-1"></i> PLAY</a>
+                            <a href="https://github.com/tomi-cancheff/Unity-AI" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-gray-500 text-gray-300 py-2 font-pixel text-xs hover:bg-white hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-github mr-1"></i> CODE</a>
                         </div>
                     </div>
                 </article>
 
-                <!-- GOLFEALO! -->
+                <!-- UNITY ESSENTIALS -->
                 <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
                     <div class="absolute inset-0 bg-gray-900">
-                        <img loading="lazy" decoding="async" src="assets/golfealo_cover.jpg" alt="Golfealo!" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-golf-ball-tee text-8xl text-white/10"></i></div>
+                        <img loading="lazy" decoding="async" src="assets/unity_essentials.jpg" alt="Unity Essentials" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-cubes text-8xl text-white/10"></i></div>
                     </div>
                     <div class="relative z-10 p-6 flex flex-col h-full justify-between sq-overlay">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-green text-glow-blue" data-translate="sq3_title">GOLFEALO!</h3>
-                                <span class="text-[10px] font-pixel text-neon-green border border-neon-green px-2 py-1 bg-black/50">DESIGN & ART</span>
+                                <h3 class="font-pixel text-lg text-white group-hover:text-yellow-400 text-glow-blue" data-translate="sq_essentials_title">UNITY ESSENTIALS</h3>
+                                <span class="text-[10px] font-pixel text-yellow-400 border border-yellow-400 px-2 py-1 bg-black/50">LEVEL DESIGN</span>
                             </div>
-                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1" data-translate="sq3_date">Unity (C#) | Sep 2021</p>
-                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq3_desc">Arcade de minigolf basado en físicas y diseño de niveles.</p>
+                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1">Unity (C#) | 3D</p>
+                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq_essentials_desc">Proyecto basado en el trayecto de Unity Essentials, con múltiples escenas demo y una breve jugable, mostrando competencias básicas del editor, C#, diseño de niveles y diseño de juego.</p>
                         </div>
                         <div class="flex gap-2 mt-4">
-                             <a href="https://decaroxgames.itch.io/golfealo" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-neon-green text-neon-green py-2 font-pixel text-xs hover:bg-neon-green hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-itch-io mr-1"></i> PLAY ON ITCH.IO</a>
+                            <a href="https://play.unity.com/es/games/99138d79-e9d5-484c-bd3a-e6e9b3377082/essentials-test-build" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-yellow-400 text-yellow-400 py-2 font-pixel text-xs hover:bg-yellow-400 hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-unity mr-1"></i> PLAY</a>
+                            <a href="https://github.com/tomi-cancheff/Unity-Essentials-Project" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-gray-500 text-gray-300 py-2 font-pixel text-xs hover:bg-white hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-github mr-1"></i> CODE</a>
                         </div>
                     </div>
                 </article>
@@ -420,14 +449,18 @@
                 <i class="fa-solid fa-microchip text-yellow-400 text-3xl"></i>
                 <h2 class="font-pixel text-2xl md:text-3xl" data-translate="skill_tree_title">SKILL TREE</h2>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Engines -->
                 <div class="skill-card p-6 border-2 border-gray-700 bg-black/60 hover:border-neon-blue transition-colors">
                     <h3 class="font-pixel text-sm text-neon-blue mb-4 flex items-center gap-2"><i class="fa-solid fa-code"></i> <span data-translate="st_engines">ENGINES & CODE</span></h3>
                     <ul class="font-mono text-sm text-gray-300 space-y-2">
-                        <li><i class="fa-brands fa-unity text-white mr-2"></i>Unity 3D/2D (C#)</li>
-                        <li><i class="fa-solid fa-cube text-white mr-2"></i>Unreal Engine (Blueprints)</li>
+                        <li>• Unity 3D / 2D (C#)</li>
+                        <li>• Unreal Engine (Blueprints)</li>
+                        <li>• C# · OOP · Design Patterns</li>
+                        <li>• ShaderGraph (URP)</li>
+                        <li>• Cinemachine · Physics · UI Toolkit</li>
+                        <li>• Git / GitHub / BitBucket</li>
                     </ul>
                 </div>
                 <!-- Game Design -->
@@ -452,13 +485,12 @@
                 <div class="skill-card p-6 border-2 border-gray-700 bg-black/60 hover:border-yellow-400 transition-colors">
                     <h3 class="font-pixel text-sm text-yellow-400 mb-4 flex items-center gap-2"><i class="fa-solid fa-toolbox"></i> <span data-translate="st_tools">PRODUCTIVITY</span></h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Jira</span>
-                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Figma</span>
-                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Miro</span>
-                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Slack</span>
-                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Git/GitHub</span>
-                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">BitBucket</span>
-                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Google Workspace</span>
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Jira · Miro · Slack</span>
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Figma (UI/UX Wireframing)</span>
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Unity Editor · UnityHub</span>
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">VS Code · Rider</span>
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">Trello · Notion</span>
+                        <span class="px-2 py-1 bg-gray-800 border border-gray-600 text-xs font-mono">ChatGPT · Claude · Copilot</span>
                     </div>
                 </div>
                 <!-- Languages -->
@@ -478,10 +510,31 @@
                 <i class="fa-solid fa-graduation-cap text-neon-blue text-3xl"></i>
                 <h2 class="font-pixel text-2xl md:text-3xl" data-translate="edu_title">ACADEMIC LOG</h2>
             </div>
-            
+
+            <article class="p-8 border-2 border-neon-blue bg-black/80 relative overflow-hidden mb-6">
+                <div class="absolute top-0 right-0 bg-neon-blue text-black font-pixel text-xs px-3 py-1" data-translate="edu_completed">COMPLETED</div>
+
+                <h3 class="font-pixel text-lg text-white mb-2" data-translate="edu_bs_title">Desarrollo con Inteligencia Artificial</h3>
+                <div class="flex flex-col md:flex-row md:items-center gap-4 font-mono text-sm text-neon-blue mb-4">
+                    <span><i class="fa-solid fa-building-columns"></i> <span data-translate="edu_bs_inst">Big School</span></span>
+                    <span class="hidden md:inline">|</span>
+                    <span data-translate="edu_bs_date"><i class="fa-solid fa-calendar"></i> Febrero 2026 (Completo)</span>
+                    <span class="hidden md:inline">|</span>
+                    <span><i class="fa-solid fa-location-dot"></i> Argentina</span>
+                </div>
+
+                <p class="font-mono text-gray-300 mb-6" data-translate="edu_bs_focus">
+                    Enfoque: Ingeniería de prompts técnicos para generación de código, definición de proyectos con agentes de IA, automatización de flujos de programación e integración de agentes.
+                </p>
+
+                <a href="https://drive.google.com/file/d/1srj_3s_zmOIk-3pTBY365YiiONVYBFhk/view" target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-3 border border-neon-blue text-neon-blue font-pixel text-xs hover:bg-neon-blue hover:text-black transition-all hover:shadow-[0_0_15px_#00f3ff]">
+                    <i class="fa-solid fa-eye mr-2"></i> <span data-translate="edu_bs_btn">VER CERTIFICADO</span>
+                </a>
+            </article>
+
             <article class="p-8 border-2 border-neon-blue bg-black/80 relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-neon-blue text-black font-pixel text-xs px-3 py-1">COMPLETED</div>
-                
+                <div class="absolute top-0 right-0 bg-neon-blue text-black font-pixel text-xs px-3 py-1" data-translate="edu_completed">COMPLETED</div>
+
                 <h3 class="font-pixel text-lg text-white mb-2" data-translate="edu_degree">Técnico Universitario en Desarrollo de Software y Videojuegos</h3>
                 <div class="flex flex-col md:flex-row md:items-center gap-4 font-mono text-sm text-neon-blue mb-4">
                     <span><i class="fa-solid fa-building-columns"></i> UADE</span>
@@ -490,11 +543,11 @@
                     <span class="hidden md:inline">|</span>
                     <span><i class="fa-solid fa-location-dot"></i> Argentina</span>
                 </div>
-                
+
                 <p class="font-mono text-gray-300 mb-6" data-translate="edu_focus">
                     Enfoque: Game Design técnico, C# y Diseño de Juegos tanto en Unity como Unreal Engine.
                 </p>
-                
+
                 <a href="https://drive.google.com/file/d/1W3StJLOD7gdwcIqAxcsZPDVkWpRM0stx/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-3 border border-neon-blue text-neon-blue font-pixel text-xs hover:bg-neon-blue hover:text-black transition-all hover:shadow-[0_0_15px_#00f3ff]">
                     <i class="fa-solid fa-eye mr-2"></i> <span data-translate="btn_show">VER TÍTULO</span>
                 </a>
