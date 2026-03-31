@@ -151,6 +151,12 @@
         let currentLang = 'en';
         const langBtn = document.getElementById('lang-btn');
         const htmlTranslationKeys = new Set(['exp1_role', 'exp2_role', 'edu_date', 'edu_bs_date']);
+        function removeDuplicateExperienceCards() {
+            const gbtnCards = document.querySelectorAll('[data-exp="gbtn"]');
+            gbtnCards.forEach((card, index) => {
+                if (index > 0) card.remove();
+            });
+        }
         function applyTranslations() {
             langBtn.innerText = currentLang.toUpperCase();
             document.querySelectorAll('[data-translate]').forEach(el => {
@@ -165,6 +171,7 @@
             currentLang = currentLang === 'es' ? 'en' : 'es';
             applyTranslations();
         });
+        removeDuplicateExperienceCards();
         applyTranslations();
 
         // Contact
