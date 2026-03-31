@@ -62,6 +62,12 @@
                 exp1_p2: "Impulso flujos de trabajo asistidos por IA para prototipado rápido, reduciendo tiempos de producción aproximadamente un 20-30%.",
                 exp1_p3: "Diseño sistemas de juego escalables junto con su documentación (GDDs, Briefs, Spec Docs).",
                 exp1_p4: "Colaboro estrechamente con los equipos de narrativa, desarrollo, arte, comercial e instruccional.",
+                exp2_role: "QA TESTER FREELANCE | <a href='https://playgbtn.com/' target='_blank' rel='noopener noreferrer' class='text-neon-blue hover:underline'>GBTN – Keyword Studios</a>",
+                exp2_date: "Diciembre 2025 – Actualidad",
+                exp2_p1: "Participo en sesiones de testing funcional de corta y media duración para títulos mobile, PC y consola dentro de la red Global Beta Testers Network.",
+                exp2_p2: "Ejecuto casos de prueba en distintas plataformas, reportando bugs y comportamientos inesperados con criterio técnico y de game design.",
+                exp2_p3: "Redacto documentación de testing clara y estructurada, incluyendo pasos de reproducción, severidad y evidencia visual cuando corresponde.",
+                exp2_p4: "Colaboro de forma remota y asincrónica adaptándome a los tiempos y requerimientos de cada sesión.",
                 sq_title: "SIDE QUESTS",
                 sq1_title: "TANK BATTLES",
                 sq_kyle_title: "KYLE AI PROTOTYPE",
@@ -83,7 +89,7 @@
                 st_gd_1: "• Sistemas de Juego", st_gd_2: "• Diseño de Niveles", st_gd_3: "• Balanceo de Mecánicas", st_gd_4: "• Documentación (GDD, Feature Briefs, Spec Docs, High Concepts)", st_gd_5: "• QA & Playtesting",
                 st_ai: "IA Y PROTOTIPADO", st_ai_desc: "Uso de agentes para aceleración de procesos de prototipado como creación de código o asistencia en el armado de documentación.", st_tools: "HERRAMIENTAS", st_lang: "IDIOMAS", 
                 lang_en: "Inglés", lang_es: "Español (Nativo)",
-                edu_title: "REGISTRO ACADÉMICO", edu_degree: "Técnico Universitario en Desarrollo de Software y Videojuegos", edu_focus: "Enfoque: Game Design técnico, C# y Diseño de Juegos en Unity/Unreal.", edu_date: "<i class='fa-solid fa-calendar'></i> Ago 2019 – Dic 2023", btn_show: "VER TÍTULO",
+                edu_title: "REGISTRO ACADÉMICO", edu_completed: "COMPLETED", edu_bs_title: "Desarrollo con Inteligencia Artificial", edu_bs_inst: "Big School", edu_bs_date: "<i class='fa-solid fa-calendar'></i> Febrero 2026 (Completo)", edu_bs_focus: "Enfoque: Ingeniería de prompts técnicos para generación de código, definición de proyectos con agentes de IA, automatización de flujos de programación e integración de agentes.", edu_bs_btn: "VER CERTIFICADO", edu_degree: "Técnico Universitario en Desarrollo de Software y Videojuegos", edu_focus: "Enfoque: Game Design técnico, C# y Diseño de Juegos en Unity/Unreal.", edu_date: "<i class='fa-solid fa-calendar'></i> Ago 2019 – Dic 2023", btn_show: "VER TÍTULO",
                 contact_title: "TABLERO DE MISIONES", label_name: "NOMBRE JUGADOR", label_msg: "DESCRIPCIÓN QUEST", btn_send: "ENVIAR MENSAJE",
                 lvl: "LVL. 28", hp_scroll: "HP (SCROLL)", nav_inv: "TABLERO"
             },
@@ -107,6 +113,12 @@
                 exp1_p2: "Driving AI-assisted workflows for rapid prototyping, reducing production times by approximately 20-30%.",
                 exp1_p3: "Designing scalable game systems along with documentation (GDDs, Briefs, Spec Docs).",
                 exp1_p4: "Collaborating closely with narrative, development, art, commercial, and instructional teams.",
+                exp2_role: "FREELANCE QA TESTER | <a href='https://playgbtn.com/' target='_blank' rel='noopener noreferrer' class='text-neon-blue hover:underline'>GBTN – Keyword Studios</a>",
+                exp2_date: "December 2025 – Present",
+                exp2_p1: "Participate in short and mid-length functional testing sessions for mobile, PC and console titles within the Global Beta Testers Network.",
+                exp2_p2: "Execute test cases across multiple platforms, reporting bugs and unexpected behaviors with technical and game design criteria.",
+                exp2_p3: "Write clear and structured testing documentation including reproduction steps, severity levels and visual evidence when applicable.",
+                exp2_p4: "Work remotely and asynchronously adapting to the pace and requirements of each testing session.",
                 sq_title: "SIDE QUESTS",
                 sq1_title: "TANK BATTLES",
                 sq_kyle_title: "KYLE AI PROTOTYPE",
@@ -128,17 +140,22 @@
                 st_gd_1: "• Game Systems", st_gd_2: "• Level Design", st_gd_3: "• Mechanics Balancing", st_gd_4: "• Documentation (GDD, Feature Briefs, Spec Docs, High Concepts)", st_gd_5: "• QA & Playtesting",
                 st_ai: "AI & PROTOTYPING", st_ai_desc: "Using agents to accelerate prototyping processes such as code creation or documentation assistance.", st_tools: "TOOLS", st_lang: "LANGUAGES", 
                 lang_en: "English", lang_es: "Spanish (Native)",
-                edu_title: "ACADEMIC LOG", edu_degree: "Associate's Degree in Software & Game Development", edu_focus: "Focus: Technical Game Design, C# and Game Design in Unity/Unreal.", edu_date: "<i class='fa-solid fa-calendar'></i> Aug 2019 – Dec 2023", btn_show: "SHOW DEGREE",
+                edu_title: "ACADEMIC LOG", edu_completed: "COMPLETED", edu_bs_title: "Artificial Intelligence Development", edu_bs_inst: "Big School", edu_bs_date: "<i class='fa-solid fa-calendar'></i> February 2026 (Completed)", edu_bs_focus: "Focus: Technical prompt engineering for code generation, AI-driven project definition, automated programming workflows and AI agent integration.", edu_bs_btn: "VIEW CERTIFICATE", edu_degree: "Associate's Degree in Software & Game Development", edu_focus: "Focus: Technical Game Design, C# and Game Design in Unity/Unreal.", edu_date: "<i class='fa-solid fa-calendar'></i> Aug 2019 – Dec 2023", btn_show: "SHOW DEGREE",
                 contact_title: "QUEST BOARD", label_name: "PLAYER NAME", label_msg: "QUEST DESCRIPTION", btn_send: "SEND MESSAGE",
                 lvl: "LVL. 28", hp_scroll: "HP (SCROLL)", nav_inv: "QUEST BOARD"
             }
         };
 
-        let currentLang = 'es';
+        let currentLang = 'en';
         const langBtn = document.getElementById('lang-btn');
-        const htmlTranslationKeys = new Set(['exp1_role', 'edu_date']);
-        langBtn.addEventListener('click', () => {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
+        const htmlTranslationKeys = new Set(['exp1_role', 'exp2_role', 'edu_date', 'edu_bs_date']);
+        function removeDuplicateExperienceCards() {
+            const gbtnCards = document.querySelectorAll('[data-exp="gbtn"]');
+            gbtnCards.forEach((card, index) => {
+                if (index > 0) card.remove();
+            });
+        }
+        function applyTranslations() {
             langBtn.innerText = currentLang.toUpperCase();
             document.querySelectorAll('[data-translate]').forEach(el => {
                 const key = el.getAttribute('data-translate');
@@ -147,7 +164,13 @@
                 if (htmlTranslationKeys.has(key)) el.innerHTML = translatedValue;
                 else el.textContent = translatedValue;
             });
+        }
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            applyTranslations();
         });
+        removeDuplicateExperienceCards();
+        applyTranslations();
 
         // Contact
         document.getElementById('send-msg-btn').addEventListener('click', () => {
