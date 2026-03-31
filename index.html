@@ -107,7 +107,7 @@
                 <a href="#education" class="hover:text-neon-pink transition-colors" data-translate="nav_edu">ACADEMIC</a>
                 <a href="#contact" class="hover:text-neon-pink transition-colors" data-translate="nav_inv">QUEST BOARD</a>
             </nav>
-            <button id="lang-btn" class="font-pixel text-xs border border-neon-blue px-2 py-1 text-neon-blue hover:bg-neon-blue hover:text-black transition-colors">ES</button>
+            <button id="lang-btn" class="font-pixel text-xs border border-neon-blue px-2 py-1 text-neon-blue hover:bg-neon-blue hover:text-black transition-colors">EN</button>
             <button class="md:hidden text-neon-blue text-2xl" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"><i class="fa-solid fa-bars"></i></button>
         </div>
     </header>
@@ -171,10 +171,6 @@
 
                 <!-- Skill Tags -->
                 <div class="h-full bg-black/60 p-7 border-l-2 border-neon-blue backdrop-blur-sm flex flex-col justify-start gap-6">
-                    <div class="font-pixel text-sm text-neon-blue flex items-center gap-2">
-                        <i class="fa-solid fa-bolt text-neon-blue"></i>
-                        <span data-translate="technical_abilities_title">TECHNICAL ABILITIES</span>
-                    </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 content-start items-start">
                         <div class="skill-tag-card border border-neon-blue/40 p-5 min-h-[170px] bg-black/40">
                             <div class="font-pixel text-sm mb-4 text-neon-blue" data-translate="skill_prog">TECHNICAL SCRIPTING</div>
@@ -222,7 +218,7 @@
                     <div class="skill-tag-card border border-white/30 p-5 bg-black/40">
                         <div class="font-pixel text-sm mb-4 text-gray-200 flex items-center gap-2">
                             <i class="fa-solid fa-shield text-gray-300"></i>
-                            <span data-translate="passive_abilities_title">PASSIVE ABILITIES</span>
+                            <span>PASSIVE ABILITIES</span>
                         </div>
                         <div class="flex flex-wrap gap-2">
                             <span class="px-3 py-1.5 border border-gray-400 text-gray-200 text-sm bg-white/5">Agile / Scrum</span>
@@ -244,6 +240,24 @@
                 </div>
             </div>
             <div class="flex flex-col gap-8">
+                <article class="experience-card p-6 md:p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-vial-circle-check text-9xl text-white"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 border-b border-gray-700 pb-4">
+                            <h3 class="font-pixel text-lg md:text-xl text-white group-hover:text-neon-green transition-colors" data-translate="exp2_role">QA TESTER FREELANCE | <a href="https://playgbtn.com/" target="_blank" rel="noopener noreferrer" class="text-neon-blue hover:underline">GBTN – Keyword Studios</a></h3>
+                            <span class="font-mono text-neon-green text-sm mt-2 md:mt-0" data-translate="exp2_date">Diciembre 2025 – Actualidad</span>
+                        </div>
+                        <ul class="font-mono text-sm md:text-base text-gray-300 space-y-3 list-disc pl-5 marker:text-neon-blue">
+                            <li data-translate="exp2_p1">Participo en sesiones de testing funcional de corta y media duración para títulos mobile, PC y consola dentro de la red Global Beta Testers Network.</li>
+                            <li data-translate="exp2_p2">Ejecuto casos de prueba en distintas plataformas, reportando bugs y comportamientos inesperados con criterio técnico y de game design.</li>
+                            <li data-translate="exp2_p3">Redacto documentación de testing clara y estructurada, incluyendo pasos de reproducción, severidad y evidencia visual cuando corresponde.</li>
+                            <li data-translate="exp2_p4">Colaboro de forma remota y asincrónica adaptándome a los tiempos y requerimientos de cada sesión.</li>
+                        </ul>
+                    </div>
+                </article>
+
                 <article class="experience-card p-6 md:p-8 relative overflow-hidden group">
                     <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                         <i class="fa-solid fa-briefcase text-9xl text-white"></i>

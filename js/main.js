@@ -148,11 +148,10 @@
             }
         };
 
-        let currentLang = 'es';
+        let currentLang = 'en';
         const langBtn = document.getElementById('lang-btn');
         const htmlTranslationKeys = new Set(['exp1_role', 'exp2_role', 'edu_date', 'edu_bs_date']);
-        langBtn.addEventListener('click', () => {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
+        function applyTranslations() {
             langBtn.innerText = currentLang.toUpperCase();
             document.querySelectorAll('[data-translate]').forEach(el => {
                 const key = el.getAttribute('data-translate');
@@ -161,7 +160,12 @@
                 if (htmlTranslationKeys.has(key)) el.innerHTML = translatedValue;
                 else el.textContent = translatedValue;
             });
+        }
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            applyTranslations();
         });
+        applyTranslations();
 
         // Contact
         document.getElementById('send-msg-btn').addEventListener('click', () => {
