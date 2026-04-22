@@ -1,11 +1,5 @@
         // Init
-        setTimeout(() => { document.getElementById('loading-bar').style.width = '100%'; }, 100);
-        setTimeout(() => { document.getElementById('start-btn').style.display = 'block'; }, 1200);
-        document.getElementById('start-btn').addEventListener('click', () => {
-            document.getElementById('loader').style.opacity = '0';
-            setTimeout(() => { document.getElementById('loader').style.display = 'none'; }, 500);
-            initGrid();
-        });
+        initGrid();
 
         // Scroll Controls Script
         function scrollSideQuests(direction) {
@@ -125,11 +119,11 @@
                 sq1_desc: "3D arcade combat game with local multiplayer and cross-platform support.",
                 sq_kyle_desc: "Prototyping of a 'character selector' scene in Unity 6.0 using the integrated Unity AI assistant. Animations, sounds, music, backgrounds, and textures were created and iterated with the agent.",
                 sq_essentials_desc: "Project based on the Unity Essentials pathway, featuring multiple demo scenes and a short playable one, showcasing basic skills in the Editor, C#, Level Design, and Game Design.",
-                sq_numbra_desc: "Cyberpunk action-adventure featuring puzzles and exploration. Development focused on level design and Game Design structuring.",
+                sq_numbra_desc: "Designed level layouts and the mission system, and co-developed sections of the combat system including animations and abilities.",
                 sq2_date: "UE4 (Blueprints) | Aug 2023",
-                sq2_desc: "3D horror title, integrating Blueprints for AI enemy behavior.",
+                sq2_desc: "Developed the Blueprint system, enemy AI (Unreal Engine Blackboard), main character states, and level layouts across each stage. Also tested variables and specific sections of each stage to ensure final quality.",
                 sq3_date: "Unity (C#) | Sep 2021",
-                sq3_desc: "Physics-based minigolf arcade game and level design.",
+                sq3_desc: "Designed the physics system and level layouts, balanced and fine-tuned key parameters for shot mechanics and golf club types — giving each shot strategic depth and each level its own identity.",
                 sq_claude_desc: "A Unity Editor tool that integrates the Claude API (Anthropic) to prototype game mechanics, generate C# scripts and build scenes from natural language prompts — without leaving the Editor.",
                 skill_tree_title: "SKILL TREE", st_engines: "ENGINES & CODE", 
                 st_gd_1: "• Game Systems", st_gd_2: "• Level Design", st_gd_3: "• Mechanics Balancing", st_gd_4: "• Documentation (GDD, Feature Briefs, Spec Docs, High Concepts)", st_gd_5: "• QA & Playtesting",
@@ -143,16 +137,8 @@
         };
 
         let currentLang = 'en';
-        const langBtn = document.getElementById('lang-btn');
         const htmlTranslationKeys = new Set(['exp1_role', 'exp2_role', 'edu_date', 'edu_bs_date']);
-        function removeDuplicateExperienceCards() {
-            const gbtnCards = document.querySelectorAll('[data-exp="gbtn"]');
-            gbtnCards.forEach((card, index) => {
-                if (index > 0) card.remove();
-            });
-        }
         function applyTranslations() {
-            langBtn.innerText = currentLang.toUpperCase();
             document.querySelectorAll('[data-translate]').forEach(el => {
                 const key = el.getAttribute('data-translate');
                 const translatedValue = translations[currentLang][key];
@@ -161,11 +147,6 @@
                 else el.textContent = translatedValue;
             });
         }
-        langBtn.addEventListener('click', () => {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
-            applyTranslations();
-        });
-        removeDuplicateExperienceCards();
         applyTranslations();
 
         // Contact

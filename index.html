@@ -63,16 +63,8 @@
     <div class="screen-glow"></div>
     <canvas id="bg-grid"></canvas>
 
-    <!-- Loader -->
-    <div id="loader">
-        <h1 class="font-pixel text-neon-blue text-4xl mb-8 animate-pulse text-center leading-normal">LOADING...</h1>
-        <div class="w-64 h-4 border-2 border-neon-blue p-1">
-            <div id="loading-bar" class="h-full bg-neon-pink w-0 transition-all duration-1000"></div>
-        </div>
-        <p class="mt-4 text-neon-green animate-bounce font-pixel text-xs cursor-pointer" id="start-btn" style="display:none;">[ CLICK TO START ]</p>
-    </div>
 
-    <!-- Header -->
+<!-- Header -->
     <header class="fixed top-0 left-0 w-full z-40 p-4 border-b border-white/10 bg-black/80 backdrop-blur-sm flex justify-between items-center transition-colors duration-500">
         <div class="flex items-center gap-4">
             <div class="w-10 h-10 border-2 border-neon-blue rounded flex items-center justify-center overflow-hidden">
@@ -107,7 +99,6 @@
                 <a href="#education" class="hover:text-neon-pink transition-colors" data-translate="nav_edu">ACADEMIC</a>
                 <a href="#contact" class="hover:text-neon-pink transition-colors" data-translate="nav_inv">QUEST BOARD</a>
             </nav>
-            <button id="lang-btn" class="font-pixel text-xs border border-neon-blue px-2 py-1 text-neon-blue hover:bg-neon-blue hover:text-black transition-colors">EN</button>
             <button class="md:hidden text-neon-blue text-2xl" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"><i class="fa-solid fa-bars"></i></button>
         </div>
     </header>
@@ -309,29 +300,7 @@
                     </div>
                 </article>
 
-                <!-- TANK BATTLES -->
-                <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
-                    <div class="absolute inset-0 bg-gray-900">
-                        <img loading="lazy" decoding="async" src="assets/tank_cover.jpg" alt="Tank Battles" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-shield-halved text-8xl text-white/10"></i></div>
-                    </div>
-                    <div class="relative z-10 p-6 flex flex-col h-full justify-between sq-overlay">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-blue text-glow-blue" data-translate="sq1_title">TANK BATTLES</h3>
-                                <span class="text-[10px] font-pixel text-neon-blue border border-neon-blue px-2 py-1 bg-black/50">SOLO DEV</span>
-                            </div>
-                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1">Unity (C#) | Oct 2025</p>
-                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq1_desc">Juego arcade de combate 3D con multijugador local y soporte multiplataforma.</p>
-                        </div>
-                        <div class="flex gap-2 mt-4">
-                            <a href="https://decaroxgames.itch.io/tank-battles" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-neon-blue text-neon-blue py-2 font-pixel text-xs hover:bg-neon-blue hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-itch-io mr-1"></i> PLAY</a>
-                            <a href="https://github.com/tomi-cancheff/Tanks-project" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-gray-500 text-gray-300 py-2 font-pixel text-xs hover:bg-white hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-github mr-1"></i> CODE</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- GOLFEALO! -->
+<!-- GOLFEALO! -->
                 <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
                     <div class="absolute inset-0 bg-gray-900">
                         <img loading="lazy" decoding="async" src="assets/golfealo_cover.jpg" alt="Golfealo!" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -344,7 +313,7 @@
                                 <span class="text-[10px] font-pixel text-neon-green border border-neon-green px-2 py-1 bg-black/50">DESIGN & ART</span>
                             </div>
                             <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1" data-translate="sq3_date">Unity (C#) | Sep 2021</p>
-                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq3_desc">Arcade de minigolf basado en físicas y diseño de niveles.</p>
+                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq3_desc">Designed the physics system and level layouts, balanced and fine-tuned key parameters for shot mechanics and golf club types — giving each shot strategic depth and each level its own identity.</p>
                         </div>
                         <div class="flex gap-2 mt-4">
                              <a href="https://decaroxgames.itch.io/golfealo" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-neon-green text-neon-green py-2 font-pixel text-xs hover:bg-neon-green hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-itch-io mr-1"></i> PLAY ON ITCH.IO</a>
@@ -365,7 +334,7 @@
                                 <span class="text-[10px] font-pixel text-purple-400 border border-purple-400 px-2 py-1 bg-black/50">GAME DESIGN</span>
                             </div>
                             <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1">Unity (C#) | Ago 2023</p>
-                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq_numbra_desc">Aventura de acción Cyberpunk con puzzles y exploración. Foco en el diseño de niveles y estructuración del Game Design.</p>
+                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq_numbra_desc">Designed level layouts and the mission system, and co-developed sections of the combat system including animations and abilities.</p>
                         </div>
                         <div class="flex gap-2 mt-4">
                             <a href="https://decaroxgames.itch.io/numbra-fatalis" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-purple-400 text-purple-400 py-2 font-pixel text-xs hover:bg-purple-400 hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-itch-io mr-1"></i> PLAY ON ITCH.IO</a>
@@ -386,7 +355,7 @@
                                 <span class="text-[10px] font-pixel text-neon-pink border border-neon-pink px-2 py-1 bg-black/50">TECHNICAL DESIGN</span>
                             </div>
                             <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1" data-translate="sq2_date">UE4 (Blueprints) | Ago 2023</p>
-                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq2_desc">Título de terror 3D, integración de Blueprints para IA enemiga.</p>
+                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq2_desc">Developed the Blueprint system, enemy AI (Unreal Engine Blackboard), main character states, and level layouts across each stage. Also tested variables and specific sections of each stage to ensure final quality.</p>
                         </div>
                         <div class="flex gap-2 mt-4">
                             <a href="https://decaroxgames.itch.io/your-worst-nightmare" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-neon-pink text-neon-pink py-2 font-pixel text-xs hover:bg-neon-pink hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-itch-io mr-1"></i> PLAY ON ITCH.IO</a>
@@ -394,49 +363,6 @@
                     </div>
                 </article>
 
-                <!-- KYLE AI PROTOTYPE -->
-                <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
-                    <div class="absolute inset-0 bg-gray-900">
-                        <img loading="lazy" decoding="async" src="assets/kyle_ai.jpg" alt="Kyle Prototype" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-robot text-8xl text-white/10"></i></div>
-                    </div>
-                    <div class="relative z-10 p-6 flex flex-col h-full justify-between sq-overlay">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-pixel text-lg text-white group-hover:text-neon-green text-glow-blue" data-translate="sq_kyle_title">KYLE AI PROTOTYPE</h3>
-                                <span class="text-[10px] font-pixel text-neon-green border border-neon-green px-2 py-1 bg-black/50">PROTOTYPE</span>
-                            </div>
-                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1">Unity (C#) | AI</p>
-                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq_kyle_desc">Prototipado de una escena tipo "selector de personaje" en Unity 6.0 utilizando la ayuda del asistente de Unity AI integrado en el editor. Las animaciones, sonidos, música y background así como texturas fueron creadas e iteradas con el agente.</p>
-                        </div>
-                        <div class="flex gap-2 mt-4">
-                            <a href="https://play.unity.com/es/games/c96a5e14-c8b8-4047-aca0-cc094d818065/kyle-prototype" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-neon-green text-neon-green py-2 font-pixel text-xs hover:bg-neon-green hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-unity mr-1"></i> PLAY</a>
-                            <a href="https://github.com/tomi-cancheff/Unity-AI" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-gray-500 text-gray-300 py-2 font-pixel text-xs hover:bg-white hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-github mr-1"></i> CODE</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- UNITY ESSENTIALS -->
-                <article class="min-w-[85vw] md:min-w-[400px] snap-center project-card relative h-96 group flex flex-col justify-between overflow-hidden">
-                    <div class="absolute inset-0 bg-gray-900">
-                        <img loading="lazy" decoding="async" src="assets/unity_essentials.jpg" alt="Unity Essentials" class="w-full h-full object-cover opacity-25 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="w-full h-full flex items-center justify-center hidden bg-gray-900"><i class="fa-solid fa-cubes text-8xl text-white/10"></i></div>
-                    </div>
-                    <div class="relative z-10 p-6 flex flex-col h-full justify-between sq-overlay">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-pixel text-lg text-white group-hover:text-yellow-400 text-glow-blue" data-translate="sq_essentials_title">UNITY ESSENTIALS</h3>
-                                <span class="text-[10px] font-pixel text-yellow-400 border border-yellow-400 px-2 py-1 bg-black/50">LEVEL DESIGN</span>
-                            </div>
-                            <p class="font-mono text-xs text-neon-green mb-4 font-bold bg-black/30 inline-block px-1">Unity (C#) | 3D</p>
-                            <p class="font-mono text-base text-white drop-shadow-md leading-relaxed" data-translate="sq_essentials_desc">Proyecto basado en el trayecto de Unity Essentials, con múltiples escenas demo y una breve jugable, mostrando competencias básicas del editor, C#, diseño de niveles y diseño de juego.</p>
-                        </div>
-                        <div class="flex gap-2 mt-4">
-                            <a href="https://play.unity.com/es/games/99138d79-e9d5-484c-bd3a-e6e9b3377082/essentials-test-build" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-yellow-400 text-yellow-400 py-2 font-pixel text-xs hover:bg-yellow-400 hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-unity mr-1"></i> PLAY</a>
-                            <a href="https://github.com/tomi-cancheff/Unity-Essentials-Project" target="_blank" rel="noopener noreferrer" class="flex-1 text-center border border-gray-500 text-gray-300 py-2 font-pixel text-xs hover:bg-white hover:text-black transition-colors bg-black/60 backdrop-blur-sm"><i class="fa-brands fa-github mr-1"></i> CODE</a>
-                        </div>
-                    </div>
-                </article>
             </div>
         </section>
 
@@ -582,7 +508,7 @@
     </main>
 
     <footer class="text-center py-8 font-mono text-xs text-gray-600 relative z-10 border-t border-white/5">
-        <p>GAME DESIGNER WEB PORTFOLIO. 2025 TOMAS CANCHEFF</p>
+        <p>GAME DESIGNER WEB PORTFOLIO. 2026 TOMAS CANCHEFF</p>
         <p class="mt-2 text-[10px] opacity-50">HINT: TRY THE KONAMI CODE</p>
     </footer>
     <script src="js/main.js"></script>
