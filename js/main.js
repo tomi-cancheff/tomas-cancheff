@@ -93,7 +93,7 @@
                 btn_start: "START MISSION", 
                 stats_title: "CHARACTER STATS",
                 bio_title: "Tomas Cancheff | Game Designer & Developer",
-                bio_text: "Game Designer and Unity Developer with 2+ years shipping educational games and gamified apps for B2B clients across LATAM and the US. I work across the full design cycle — from GDD and feature specs to playtesting and production handoff — usually as the only designer in a small cross-functional team. Lately I've been building Unity tools that connect to the Claude API to speed up prototyping, which is where my interest in technical design is heading.",
+                bio_text: "Game Designer and Developer with 2+ years shipping educational games and gamified apps for B2B clients across LATAM and the US. I work across the full design cycle — from GDD and feature specs to playtesting and production handoff — usually as the only designer in a small cross-functional team. Lately I've been building editor tools and small utilities that connect to external APIs, which is pushing my interest toward the more technical side of game development.",
                 skill_prog: "TECHNICAL SCRIPTING", 
                 skill_theory: "GAME DESIGN & SYSTEMS", 
                 skill_ld: "LEVEL DESIGN", 
